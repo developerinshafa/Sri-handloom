@@ -4,22 +4,25 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
-    const router = useRouter();
-    
+  const router = useRouter();
+
   return (
     <>
       <header className="sticky top-0 z-50 ">
         <div className="flex justify-between items-center px-10 py-1 bg-white text-black font-semibold text-2xl">
-            <img src="./Sri_Hanloom.png" alt="Logo" className="w-50" />
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="border border-gray-500 p-2 px-4"
-            />
+          <img src="./Sri_Hanloom.png" alt="Logo" className="w-40" />
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="border border-gray-500 p-2 px-4"
+          />
           {/* register & Login page */}
-          <div className="px-6">
-            <button className="bg-gray-500 p-2 cursor-pointer">Register</button>
-            <button className="bg-gray-900 text-white p-2 cursor-pointer">Login</button>
+          <div >
+            <Link href="/user">
+              <button className="bg-black text-white px-4 py-2 rounded-md cursor-pointer">
+                Login
+              </button>
+            </Link>
           </div>
 
           {/* <div className="flex text-3xl text-orange-400 pt-12 space-x-10"> */}
@@ -39,21 +42,23 @@ const Header = () => {
               </Link>
             </div>
             <div className="space-x-10 ">
-              <Link href="/"
-              
-               className="hover:text-orange-600">
+              <Link href="/" className="hover:text-orange-600">
                 Home
               </Link>
 
-              <Link href="/about"
-              onClick={() => router.push("/about")}
-               className="hover:text-orange-600">
+              <Link
+                href="/about"
+                onClick={() => router.push("/about")}
+                className="hover:text-orange-600"
+              >
                 About
               </Link>
 
-              <Link href="/products"
-              onClick={() => router.push("/products")}
-               className="hover:text-orange-600">
+              <Link
+                href="/products"
+                onClick={() => router.push("/products")}
+                className="hover:text-orange-600"
+              >
                 Products
               </Link>
 
