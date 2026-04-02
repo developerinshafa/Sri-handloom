@@ -1,8 +1,8 @@
-export default function Products(){
+export default function Review(){
     return(
         <>
         <div>
-            <h1>Welcome to Products Page</h1>
+            <h1>Welcome to Review Page</h1>
         </div>
         </>
     )
