@@ -1,40 +1,51 @@
 "use client";
 
+import { useRouter } from "next/navigation"; // ✅ import
+
 export default function RegisterPage() {
+  const router = useRouter(); // ✅ define router
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    alert("Registered Successfully ✅");
+
+    router.push("/"); // ✅ now works
+  };
+
   return (
-    <div className="bg-blue-950 py-10 px-50 items-center justify-center">
-      
-      <div className="bg-gray-200 p-8 rounded-xl shadow-xl text-center">
+    <div className="bg-blue-950 py-10 px-50 flex items-center justify-center">
+      <form onSubmit={handleSubmit} className="bg-gray-200 p-8 rounded-xl shadow-xl text-center">
         
         <h1 className="text-3xl font-semibold mb-4">Register Page</h1>
 
         <div className="space-y-4 text-left text-xl">
-          <label htmlFor="">Full Name</label>
-          <input type="text" placeholder="" className="w-full p-3 bg-gray-300 rounded-md" />
+          <label>Full Name</label>
+          <input type="text" className="w-full p-3 bg-gray-300 rounded-md" required />
 
-          <label htmlFor="">Email</label>
-          <input type="email" placeholder="" className="w-full p-3 bg-gray-300 rounded-md" />
+          <label>Email</label>
+          <input type="email" className="w-full p-3 bg-gray-300 rounded-md" required />
 
-          <label htmlFor="">Phone</label>
-          <input type="number" placeholder="" className="w-full p-3 bg-gray-300 rounded-md" />
+          <label>Phone</label>
+          <input type="number" className="w-full p-3 bg-gray-300 rounded-md" required />
 
-          <label htmlFor="">Address</label>
-          <input type="text" placeholder="" className="w-full p-3 bg-gray-300 rounded-md" />
+          <label>Address</label>
+          <input type="text" className="w-full p-3 bg-gray-300 rounded-md" required />
 
-          <label htmlFor="">Password</label>
-          <input type="password" placeholder="" className="w-full p-3 bg-gray-300 rounded-md" />
+          <label>Password</label>
+          <input type="password" className="w-full p-3 bg-gray-300 rounded-md" required minLength={5} />
 
-          <label htmlFor="">Confirm Password</label>
-          <input type="password" placeholder="" className="w-full p-3 bg-gray-300 rounded-md" />
+          <label>Confirm Password</label>
+          <input type="password" className="w-full p-3 bg-gray-300 rounded-md" required />
 
           <button
-           onClick={() => router.push("/login")}
-           className="w-full bg-green-700 text-white py-3 rounded-md cursor-pointer">
+            type="submit"
+            className="w-full bg-green-700 text-white py-3 rounded-md cursor-pointer">
             REGISTER
           </button>
         </div>
 
-      </div>
+      </form>
     </div>
   );
 }

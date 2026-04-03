@@ -1,5 +1,6 @@
 "use client"; // because we are using useState and useEffect in client component
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const images = [
@@ -64,8 +65,8 @@ export default function Home() {
 
        {/* Products section */}
       <div className="bg-gray-200 p-2">
-      <div className="py-2 px-5 ">
-        <h1 className="text-4xl px-5 font-bold">Featured Products</h1>
+      <div className="py-6 px-5 ">
+        <h1 className="text-4xl px-5 font-bold">Our Collections</h1>
       </div>
       <div className="grid grid-cols-4 w-full gap-5 px-10 py-5">
 
@@ -85,9 +86,11 @@ export default function Home() {
     
     <p className="text-sm mb-3">Stylish handloom Sarees</p>
 
-    <button className="bg-orange-400 px-3 py-1 rounded-md">
-      View
-    </button>
+    <Link href="/products/sarees">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
 
   </div>
 
@@ -109,9 +112,11 @@ export default function Home() {
     
           <p className="text-sm mb-3">Stylish handloom shirts</p>
 
-          <button className="bg-orange-400 px-3 py-1 rounded-md">
-          View
-          </button>
+          <Link href="/products/shirts">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
         </div>
       </div>
 
@@ -131,9 +136,11 @@ export default function Home() {
     
     <p className="text-sm mb-3">Stylish handloom Sarongs</p>
 
-    <button className="bg-orange-400 px-3 py-1 rounded-md">
-      View
-    </button>
+    <Link href="/products/sarongs">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
 
   </div>
 
@@ -155,9 +162,11 @@ export default function Home() {
     
     <p className="text-sm mb-3">Stylish handloom Tops</p>
 
-    <button className="bg-orange-400 px-3 py-1 rounded-md">
-      View
-    </button>
+    <Link href="/products/tops">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
 
   </div>
 
@@ -179,9 +188,11 @@ export default function Home() {
     
     <p className="text-sm mb-3">Handloom Bedsheets</p>
 
-    <button className="bg-orange-400 px-3 py-1 rounded-md">
-      View
-    </button>
+    <Link href="/products/bedsheets">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
 
   </div>
 
@@ -203,9 +214,11 @@ export default function Home() {
     
     <p className="text-sm mb-3">Handloom Materials</p>
 
-    <button className="bg-orange-400 px-3 py-1 rounded-md">
-      View
-    </button>
+    <Link href="/products/lmaterials">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
 
   </div>
 
@@ -227,9 +240,11 @@ export default function Home() {
     
     <p className="text-sm mb-3">Stylish handloom Lungis</p>
 
-    <button className="bg-orange-400 px-3 py-1 rounded-md">
-      View
-    </button>
+    <Link href="/products/lungis">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
 
   </div>
 
@@ -251,9 +266,11 @@ export default function Home() {
     
     <p className="text-sm mb-3">Stylish Handbags</p>
 
-    <button className="bg-orange-400 px-3 py-1 rounded-md">
-      View
-    </button>
+    <Link href="/products/handbags">
+      <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
+       View
+      </button>
+    </Link>
 
   </div>
 
