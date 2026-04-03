@@ -28,7 +28,7 @@ export default function RegisterPage() {
           <input type="password" placeholder="" className="w-full p-3 bg-gray-300 rounded-md" />
 
           <button
-           onClick={() => router.push("/register")}
+           onClick={() => router.push("/login")}
            className="w-full bg-green-700 text-white py-3 rounded-md cursor-pointer">
             REGISTER
           </button>

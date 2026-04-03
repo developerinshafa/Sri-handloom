@@ -2,9 +2,21 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+  alert("Login Successful ✅");
+
+  setTimeout(() => {
+    router.push("/");
+  }, 1000);
+};
 
   return (
     <div className="py-30 flex items-center justify-center bg-blue-950">
@@ -25,12 +37,16 @@ export default function LoginPage() {
           <input
             type="text"
             placeholder="Username or Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full p-3 rounded-md bg-gray-300 outline-none"
           />
 
           <input
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full p-3 rounded-md bg-gray-300 outline-none"
           />
 
@@ -43,8 +59,8 @@ export default function LoginPage() {
 
           {/* Login Button */}
           <button
-            onClick={() => router.push("/register")}
-            className="w-full bg-blue-800 text-white py-3 rounded-md"
+            onClick={handleLogin}
+            className="w-full bg-blue-800 text-white py-3 rounded-md cursor-pointer"
           >
             LOG IN
           </button>

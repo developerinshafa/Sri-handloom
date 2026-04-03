@@ -22,6 +22,10 @@ const Header = () => {
               <button className="bg-black text-white px-4 py-2 rounded-md cursor-pointer">
                 Login
               </button>
+              <button className="bg-gray-400 text-white px-4 py-2 rounded-md cursor-pointer">
+               Register
+              </button>
+
             </Link>
           </div>
 
@@ -42,14 +46,16 @@ const Header = () => {
               </Link>
             </div>
             <div className="space-x-10 ">
-              <Link href="/" className="hover:text-orange-600">
+              <Link href="/" 
+              onClick={() => router.push("/about")}
+               className="hover:text-orange-400">
                 Home
               </Link>
 
               <Link
                 href="/about"
                 onClick={() => router.push("/about")}
-                className="hover:text-orange-600"
+                 className="hover:text-orange-400"
               >
                 About
               </Link>
@@ -57,16 +63,20 @@ const Header = () => {
               <Link
                 href="/products"
                 onClick={() => router.push("/products")}
-                className="hover:text-orange-600"
+                 className="hover:text-orange-400"
               >
                 Products
               </Link>
 
-              <Link href="/review" className="hover:text-orange-600">
+              <Link href="/review" 
+              onClick={() => router.push("/review")} 
+              className="hover:text-orange-400">
                 Review
               </Link>
 
-              <Link href="/contact" className="hover:text-orange-600">
+              <Link href="/contact"  
+              onClick={() => router.push("/contact")} 
+              className="hover:text-orange-400">
                 Contact
               </Link>
             </div>
