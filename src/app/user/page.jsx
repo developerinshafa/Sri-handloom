@@ -11,7 +11,12 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-  alert("Login Successful ✅");
+  if (!email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  alert("Login Successful");
 
   setTimeout(() => {
     router.push("/");
@@ -38,6 +43,7 @@ export default function LoginPage() {
             type="text"
             placeholder="Username or Email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
             className="w-full p-3 rounded-md bg-gray-300 outline-none"
           />
@@ -45,8 +51,9 @@ export default function LoginPage() {
           <input
             type="password"
             placeholder="Password"
+            required
             value={password}
-            onChange={(e) => setPass(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full p-3 rounded-md bg-gray-300 outline-none"
           />
 
@@ -60,10 +67,15 @@ export default function LoginPage() {
           {/* Login Button */}
           <button
             onClick={handleLogin}
-            className="w-full bg-blue-800 text-white py-3 rounded-md cursor-pointer"
+            disabled={!email || !password}
+            className={`w-full py-3 rounded-md text-white font-semibold cursor-pointer
+            ${!email || !password 
+            ? "bg-gray-400 cursor-not-allowed" 
+            : "bg-blue-800 hover:bg-blue-900"}
+          `}
           >
-            LOG IN
-          </button>
+          LOG IN
+        </button>
         </div>
 
         {/* Signup */}

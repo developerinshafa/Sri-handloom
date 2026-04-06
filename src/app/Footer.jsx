@@ -40,10 +40,6 @@ export default function Footer() {
               <Link href="/review" className="hover:text-orange-600">
                 Review
               </Link>
-
-              <Link href="/contact" className="hover:text-orange-600">
-                Contact
-              </Link>
             </div>
           </div>
           <div className="space-y-4 ">

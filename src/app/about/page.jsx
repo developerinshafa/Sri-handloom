@@ -60,26 +60,6 @@ export default function About() {
         />
       </div>
 
-      {/* Extra Section */}
-      <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">
-        
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-2">🌿 Eco-Friendly</h2>
-          <p>We promote sustainable and natural fabrics.</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-2">🧵 Handcrafted</h2>
-          <p>Every product is made with care by skilled artisans.</p>
-        </div>
-
-        <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-2">🤝 دعم Weavers</h2>
-          <p>We empower local weaving communities.</p>
-        </div>
-
-      </div>
-
     </div>
   );
 }
