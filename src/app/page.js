@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import CategoriesPage from "./categories/page";
-import ProductsPage from "./products/page";
+import ReviewSection from "./review/page";
 
 const images = [
   "/handloom.jpg",
@@ -28,11 +28,11 @@ export default function Home() {
       <img
         src={images[current]}
         alt="slider"
-        className="w-full h-[50vh] object-cover transition-all duration-1000"
+        className="w-full h-[60vh] object-cover transition-all duration-1000"
       />
 
       {/* text area */}
-      <div className="absolute top-0 left-0 w-full py-20 flex flex-col items-center justify-center text-white px-5">
+      <div className="absolute top-0 left-0 w-full py-35 flex flex-col items-center justify-center text-white px-5">
         <h1 className="text-7xl md:text-8xl font-bold text-center">
           Handloom Collection
         </h1>
@@ -68,14 +68,14 @@ export default function Home() {
        <CategoriesPage/>
 
        {/* All Products */}
-       <ProductsPage/>
+       {/* <ProductsPage/> */}
 
     {/* just for you */}
     <div className="bg-gray-200 p-2 ">
       <div>
-        <h1 className="text-4xl px-5 font-bold py-5">Just For You</h1>
+        <h1 className="text-4xl px-8 font-bold py-5">Just For You</h1>
       </div>
-      <div className="grid grid-cols-5 w-full gap-4 px-10 py-10">
+      <div className="grid grid-cols-5 w-full gap-4 px-10 py-6">
         {/* Blue Saree */}
         <div className="bg-white grid text-center justify-center rounded-lg">
           <img
@@ -219,8 +219,55 @@ export default function Home() {
             </button>
           </div>
         </div>
+        
+        {/* Shirts */}
+        <div className="bg-white grid text-center justify-center rounded-lg">
+          <img
+            src="https://rareweave.com/cdn/shop/files/Latte-_Handloom_Weaved_Shirt_for_Men_4.jpg?v=1716108549"
+            alt="Blue Saree"
+            className="w-50 p-2 object-cover hover:shadow-lg rounded-2xl transition-transform duration-300 hover:scale-90"
+          />
+          <div className="p-2 space-y-2">
+            <h1 className="font-semibold text-lg">Handloom Shirt</h1>
+            <p>LKR 4,200.00</p>
+          </div>
+          <div className="py-2 ">
+            <button className="bg-black hover:bg-orange-400 text-white px-4 py-1 rounded">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        {/* top */}
+        <div className="bg-white grid text-center justify-center rounded-lg">
+          <img
+            src="https://cdn.shriyathecottonhouse.com/wp-content/uploads/2026/03/IMG_0190.webp"
+            alt="Blue Saree"
+            className="w-50 p-2 object-cover hover:shadow-lg rounded-2xl transition-transform duration-300 hover:scale-90"
+          />
+          <div className="p-2 space-y-2">
+            <h1 className="font-semibold text-lg">Handloom top</h1>
+            <p>LKR 2,200.00</p>
+          </div>
+          <div className="py-2 ">
+            <button className="bg-black hover:bg-orange-400 text-white px-4 py-1 rounded">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+
       </div>
       </div>
+
+      {/* <div className="bg-gray-200 p-2 ">
+      <div>
+        <h1 className="text-4xl px-5 font-bold py-5">Just For You</h1>
+      </div>
+      </div> */}
+      
+
+      <ReviewSection/>
     </div> 
   );
 }

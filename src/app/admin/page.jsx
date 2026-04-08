@@ -8,16 +8,16 @@ export default function AdminDashboard() {
       {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        {/* Users */}
-        <div className="bg-blue-200 p-6 rounded-xl shadow">
-          <h2 className="text-lg font-semibold">Users</h2>
-          <p className="text-3xl font-bold mt-2">20</p>
-        </div>
-
         {/* Products */}
         <div className="bg-yellow-100 p-6 rounded-xl shadow">
           <h2 className="text-lg font-semibold">Products</h2>
           <p className="text-3xl font-bold mt-2">50</p>
+        </div>
+
+        {/* Users */}
+        <div className="bg-blue-200 p-6 rounded-xl shadow">
+          <h2 className="text-lg font-semibold">Users</h2>
+          <p className="text-3xl font-bold mt-2">20</p>
         </div>
 
         {/* Orders */}

@@ -12,9 +12,10 @@ export default function AdminLayout({ children }) {
 
         <nav className="flex flex-col space-y-5 text-2xl">
           <Link href="/admin" className="hover:text-yellow-400">Dashboard</Link>
-          <Link href="/admin/users" className="hover:text-yellow-400">Users</Link>
-          <Link href="/admin/products" className="hover:text-yellow-400">Products</Link>
           <Link href="/admin/orders" className="hover:text-yellow-400">Orders</Link>
+          <Link href="/admin/products" className="hover:text-yellow-400">Products</Link>
+          <Link href="/admin/users" className="hover:text-yellow-400">Users</Link>
+        
         </nav>
       </aside>
 

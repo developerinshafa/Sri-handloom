@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping, faSearch } from "@fortawesome/free-solid-svg-icons";
+
+import UserMenu from "./UserMenu";
 
 const Header = () => {
   const router = useRouter();
@@ -18,11 +22,11 @@ const Header = () => {
       router.push("/products/sarees");
     } else if (value.includes("sarongs")) {
       router.push("/products/sarongs");
-    }else if (value.includes("lungis")) {
+    } else if (value.includes("lungis")) {
       router.push("/products/lungis");
     } else if (value.includes("tops")) {
       router.push("/products/tops");
-    }else if (value.includes("materials")) {
+    } else if (value.includes("materials")) {
       router.push("/products/materials");
     } else if (value.includes("shirts")) {
       router.push("/products/shirts");
@@ -38,33 +42,23 @@ const Header = () => {
         <img src="./Sri_Hanloom.png" alt="Logo" className="w-40" />
 
         {/* 🔍 Search Bar */}
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleSearch();
-          }}
-          className="border border-gray-500 p-2 px-4"
-        />
+        <div className="flex items-center border border-gray-500 rounded-md px-3 py-2 gap-2">
+          <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
 
-        {/* Buttons */}
-        <div className="flex gap-10">
-          <div>
-            <Link href="/register">
-              <button className="bg-gray-400 text-white px-4 py-2 rounded-md cursor-pointer">
-                Register
-              </button>
-            </Link>
-
-            <Link href="/user">
-              <button className="bg-black text-white px-4 py-2 rounded-md cursor-pointer">
-                Login
-              </button>
-            </Link>
-          </div>
+          <input
+            type="text"
+            placeholder="  Search products..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSearch();
+            }}
+            className="outline-none w-full"
+          />
         </div>
+        {/* user */}
+          <UserMenu/>
+      
       </div>
 
       {/* Navbar section */}
@@ -97,7 +91,7 @@ const Header = () => {
               onClick={() => router.push("/products")}
               className="hover:text-orange-400"
             >
-             Products
+              Products
             </Link>
 
             <Link
@@ -110,8 +104,8 @@ const Header = () => {
           </div>
           <div className="flex space-x-4">
             <Link href="/cart">
-              <button className="bg-orange-400 text-white px-4 py-1 rounded-md cursor-pointer">
-                Cart
+              <button className=" text-white px-4 py-1 rounded-md cursor-pointer">
+                <FontAwesomeIcon icon={faCartShopping} />
               </button>
             </Link>
             {/* <div>
@@ -122,7 +116,6 @@ const Header = () => {
             </Link>
           </div> */}
           </div>
-          
         </nav>
       </div>
     </header>

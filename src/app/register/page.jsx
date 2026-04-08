@@ -23,10 +23,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="bg-blue-950 py-10 px-50 flex items-center justify-center">
+    <div className="bg-gray-200 py-10 px-80 flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-200 p-8 rounded-xl shadow-xl text-center"
+        className="bg-white p-8 rounded-xl shadow-xl text-center"
       >
         <h1 className="text-3xl font-semibold mb-4">Register Page</h1>
 
@@ -34,35 +34,32 @@ export default function RegisterPage() {
           <label>Full Name</label>
           <input
             type="text"
-            className="w-full p-3 bg-gray-300 rounded-md"
+            className="w-full p-2 bg-gray-100 rounded-md"
             required
+            placeholder="Your Full Name"
           />
 
           <label>Email</label>
           <input
             type="email"
-            className="w-full p-3 bg-gray-300 rounded-md"
+            className="w-full p-2 bg-gray-100 rounded-md"
             required
+            placeholder="Email address"
           />
 
           <label>Phone</label>
           <input
             type="number"
-            className="w-full p-3 bg-gray-300 rounded-md"
+            className="w-full p-2 bg-gray-100 rounded-md"
             required
-          />
-
-          <label>Address</label>
-          <input
-            type="text"
-            className="w-full p-3 bg-gray-300 rounded-md"
-            required
+            placeholder="Phone No"
           />
 
           <label>Password</label>
           <input
             type="password"
-            className="w-full p-3 bg-gray-300 rounded-md"
+            placeholder="Minimum 5 Characters"
+            className="w-full p-2 bg-gray-100 rounded-md"
             required
             minLength={5}
             value={password}
@@ -72,18 +69,23 @@ export default function RegisterPage() {
           <label>Confirm Password</label>
           <input
             type="password"
-            className="w-full p-3 bg-gray-300 rounded-md"
+            placeholder="Password again"
+            className="w-full p-2 bg-gray-100 rounded-md"
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
+          <div className="flex justify-between items-center gap-5">
+            <button 
+            type="button"className="border border-gray-300 p-2 px-4 rounded-md hover:bg-gray-300 transition duration-300 cursor-pointer" 
+            >Cencel</button>
           <button
             type="submit"
             disabled={
               !password || !confirmPassword || password !== confirmPassword
             }
-            className={`w-full py-3 rounded-md text-white
+            className={`px-8 py-2 rounded-md text-white
     ${
       password !== confirmPassword
         ? "bg-gray-400 cursor-not-allowed"
@@ -93,6 +95,8 @@ export default function RegisterPage() {
           >
             REGISTER
           </button>
+
+          </div>
         </div>
       </form>
     </div>

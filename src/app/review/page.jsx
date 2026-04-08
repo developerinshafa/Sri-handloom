@@ -2,7 +2,7 @@
 
 const reviews = [
   {
-    name: "Anjali",
+    name: "Fathima",
     rating: 5,
     comment: "Beautiful saree! The quality is amazing and looks premium.",
   },
@@ -12,7 +12,7 @@ const reviews = [
     comment: "Very comfortable fabric. Delivery was quick.",
   },
   {
-    name: "Kavya",
+    name: "Ravi",
     rating: 4,
     comment: "Loved the design! Will definitely buy again.",
   },

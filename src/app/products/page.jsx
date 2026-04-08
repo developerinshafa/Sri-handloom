@@ -157,7 +157,7 @@ export default function ProductsPage() {
           />
           <div className="p-2 space-y-2">
             <h1 className="font-semibold text-lg">Handloom Bedsheets</h1>
-            <p>LKR 1,300.00</p>
+            <p>LKR 2,000.00</p>
           </div>
           <div className="py-2 ">
             <button className="bg-black hover:bg-orange-400 text-white px-4 py-1 rounded">
@@ -175,7 +175,7 @@ export default function ProductsPage() {
           />
           <div className="p-2 space-y-2">
             <h1 className="font-semibold text-lg">Handloom Bedsheets</h1>
-            <p>LKR 2,500.00</p>
+            <p>LKR 1,300.00</p>
           </div>
           <div className="py-2 ">
             <button className="bg-black hover:bg-orange-400 text-white px-4 py-1 rounded">

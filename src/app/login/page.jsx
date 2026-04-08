@@ -24,11 +24,11 @@ export default function LoginPage() {
 };
 
   return (
-    <div className="py-30 flex items-center justify-center bg-blue-950">
+    <div className="py-10 flex items-center justify-center bg-gray-200">
       {/* Card */}
-      <div className="bg-gray-200 rounded-xl shadow-xl p-8 text-center">
+      <div className="bg-white rounded-xl shadow-xl p-8 text-center">
         {/* Title */}
-        <h1 className="text-3xl font-semibold mb-4 ">Login Page</h1>
+        <h1 className="text-3xl font-semibold mb-4  text-left">Login</h1>
 
         {/* Logo */}
         <img
@@ -41,11 +41,11 @@ export default function LoginPage() {
         <div className="space-y-4">
           <input
             type="text"
-            placeholder="Username or Email"
+            placeholder="Email address"
             value={email}
             required
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-3 rounded-md bg-gray-300 outline-none"
+            className="w-full p-3 rounded-md bg-gray-100 outline-none"
           />
 
           <input
@@ -54,7 +54,7 @@ export default function LoginPage() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-3 rounded-md bg-gray-300 outline-none"
+            className="w-full p-3 rounded-md bg-gray-100 outline-none"
           />
 
           {/* Forgot Password */}
