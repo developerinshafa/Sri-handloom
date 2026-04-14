@@ -72,18 +72,10 @@ const Header = () => {
           <div className="space-x-10 ">
             <Link
               href="/"
-              onClick={() => router.push("/about")}
+              onClick={() => router.push("/")}
               className="hover:text-orange-400"
             >
               Home
-            </Link>
-
-            <Link
-              href="/about"
-              onClick={() => router.push("/about")}
-              className="hover:text-orange-400"
-            >
-              About
             </Link>
 
             <Link
@@ -94,13 +86,56 @@ const Header = () => {
               Products
             </Link>
 
-            <Link
-              href="/review"
-              onClick={() => router.push("/review")}
+           
+
+            {/* <Link
+              href="/products/Sarongs"
+              onClick={() => router.push("/products/Sarongs")}
               className="hover:text-orange-400"
             >
-              Review
+              Sarongs
+            </Link> */}
+
+            {/* <Link
+              href="/products/Shirts"
+              onClick={() => router.push("/products/Shirts")}
+              className="hover:text-orange-400"
+            >
+              Shirts
+            </Link> */}
+
+            {/* <Link
+              href="/products/Tops"
+              onClick={() => router.push("/products/Tops")}
+              className="hover:text-orange-400"
+            >
+              Tops
+            </Link> */}
+
+            {/* <Link
+              href="/products/Materials"
+              onClick={() => router.push("/products/Materials")}
+              className="hover:text-orange-400"
+            >
+              Materials
+            </Link> */}
+
+            {/* <Link
+              href="/products/handbags"
+              onClick={() => router.push("/products/handbags")}
+              className="hover:text-orange-400"
+            >
+              Handbags
+            </Link> */}
+
+            <Link
+              href="/about"
+              onClick={() => router.push("/about")}
+              className="hover:text-orange-400"
+            >
+              About
             </Link>
+            
           </div>
           <div className="flex space-x-4">
             <Link href="/cart">

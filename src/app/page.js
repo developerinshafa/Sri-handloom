@@ -5,10 +5,9 @@ import CategoriesPage from "./categories/page";
 import ReviewSection from "./review/page";
 
 const images = [
-  "/handloom.jpg",
-  "/bg saran.jpg",
-  "/satee galery.jpg",
-  "/the-transformation-of.jpg",
+  "https://img.freepik.com/premium-photo/national-handloom-day-copy-space_548646-44707.jpg?semt=ais_hybrid&w=740&q=80",
+  "./satee galery.jpg",
+  "https://t3.ftcdn.net/jpg/09/06/15/44/360_F_906154430_lL8mh7eayXqrrPuy2xHDUJDKRkpDE5IH.jpg"
 ];
 
 export default function Home() {
@@ -32,12 +31,12 @@ export default function Home() {
       />
 
       {/* text area */}
-      <div className="absolute top-0 left-0 w-full py-35 flex flex-col items-center justify-center text-white px-5">
-        <h1 className="text-7xl md:text-8xl font-bold text-center">
+      <div className="absolute top-0 left-0 w-full py-35 flex flex-col text-center justify-center text-white px-5">
+        <h1 className="text-7xl md:text-8xl font-bold ">
           Handloom Collection
         </h1>
 
-        <p className="text-3xl md:text-3xl font-semibold mt-8 text-center">
+        <p className="text-3xl md:text-4xl font-semibold mt-8 ">
           Traditional Style with Modern Fashion.
         </p>
       </div>

@@ -24,35 +24,31 @@ export default function LoginPage() {
 };
 
   return (
-    <div className="py-10 flex items-center justify-center bg-gray-200">
+    <div className=" flex items-center justify-center bg-gray-200 p-5">
       {/* Card */}
-      <div className="bg-white rounded-xl shadow-xl p-8 text-center">
+      <div className="bg-white rounded-lg shadow-md px-8 py-5 w-full max-w-md">
         {/* Title */}
-        <h1 className="text-3xl font-semibold mb-4  text-left">Login</h1>
-
-        {/* Logo */}
-        <img
-          src="/Sri_Hanloom.png"
-          alt="Sri Handloom"
-          className="mx-auto w-60 mb-6"
-        />
+        <h1 className="text-3xl font-semibold text-center py-5">Login to Your Account</h1>
 
         {/* Form */}
-        <div className="space-y-4">
+        <div className="space-y-2 ">
+          <label htmlFor="email" className="text-left text-sm font-medium text-gray-700">Email</label>
           <input
-            type="text"
-            placeholder="Email address"
-            value={email}
+            type="email"
+            id="email"
+            placeholder="Enter your Email "
+            // value={email}
             required
             onChange={(e) => setEmail(e.target.value)}
             className="w-full p-3 rounded-md bg-gray-100 outline-none"
           />
 
+          <label htmlFor="password" className="text-left text-sm font-medium">Password</label>
           <input
             type="password"
             placeholder="Password"
             required
-            value={password}
+            // value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full p-3 rounded-md bg-gray-100 outline-none"
           />
@@ -78,13 +74,13 @@ export default function LoginPage() {
         </button>
         </div>
 
-        {/* Signup */}
-        <p className="text-sm mt-4">
-          Don't have an account?{" "}
-          <Link href="/user?mode=register" className="font-semibold">
-            Sign Up
-          </Link>
-        </p>
+        {/* Register */}
+        <div className="p-3 text-center text-sm">
+          <a href="/register" className="text-indigo-500 hover:text-indigo-700 ">
+          Don&apos;t have an account? Register here
+        </a>
+        </div>
+        
       </div>
     </div>
   );

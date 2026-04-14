@@ -23,14 +23,15 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header/>
+        <Header />
         
-        <main className="flex-1 ">
-          <FontAwesomeIcon/>
+        <main className="flex-1">
+          <FontAwesomeIcon />
+
            {children}
           </main>
 
-        <Footer/>
+        <Footer />
         </body>
     </html>
   );
