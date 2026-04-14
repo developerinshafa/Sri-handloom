@@ -1,9 +1,10 @@
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./header/Header";
 import Footer from "./Footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const inter = Inter({
   weight:["400", "500", "600", "700"],
@@ -25,10 +26,10 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Header />
         
-        <main className="flex-1">
-          <FontAwesomeIcon />
-
-           {children}
+         <main className="flex-1">
+           <FontAwesomeIcon />
+    
+             {children}
           </main>
 
         <Footer />

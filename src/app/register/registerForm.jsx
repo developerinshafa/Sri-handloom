@@ -11,7 +11,9 @@ export default function RegisterForm() {
     function submitLogin(e) {
         e.preventDefault();
 
-        fetch("/register", {
+        // console.log({name, email, password, confirmPassword});
+
+        fetch("http://localhost:5000/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -19,12 +21,14 @@ export default function RegisterForm() {
             body: JSON.stringify({
                 name,
                 email,
-                password
-            })
+                password,
+                confirmPassword }),
         })
+
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
+            alert(data.message);
+                // console.log(data);
         })
         .catch((error) => {
             console.error("Error registering user:", error);
@@ -32,7 +36,7 @@ export default function RegisterForm() {
     }
 
     return (
-        <div className="bg-gray-200 p-4  ">
+        <div className="bg-gray-200 p-4">
       <div className="max-w-xl flex items-center justify-between mx-auto">
         <form
         onSubmit={submitLogin}
