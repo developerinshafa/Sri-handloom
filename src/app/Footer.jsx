@@ -43,21 +43,19 @@ export default function Footer() {
             </div>
           </div>
           <div className="space-y-4 ">
-                <img src="./Sri_Hanloom.png" alt="logo" />
-            </div>
+            <img src="/Sri_Hanloom.png" alt="logo" />
+          </div>
         </div>
-        </div>
-        <hr />
-        <div className="bg-black text-2xl text-white text-center space-y-5 p-5">
-          <h2>
-          &copy;{new Date().getFullYear()},<span className="text-orange-600"> Sri Handloom</span>. All
-          Rights Reserved. Designed by
+      </div>
+      <hr />
+      <div className="bg-black text-2xl text-white text-center space-y-5 p-5">
+        <h2>
+          &copy;{new Date().getFullYear()},
+          <span className="text-orange-600"> Sri Handloom</span>. All Rights
+          Reserved. Designed by
           <span className="text-orange-600"> Fathima Inshafa</span>
         </h2>
-        </div>
+      </div>
     </>
   );
 }
-
-
-

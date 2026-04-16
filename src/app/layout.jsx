@@ -1,13 +1,10 @@
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./header/Header";
 import Footer from "./Footer";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const inter = Inter({
-  weight:["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter-sans",
   subsets: ["latin"],
 });
@@ -19,21 +16,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <Header />
-        
-         <main className="flex-1">
-           <FontAwesomeIcon />
-    
-             {children}
-          </main>
+
+        <main className="flex-1">{children}</main>
 
         <Footer />
-        </body>
+      </body>
     </html>
   );
 }

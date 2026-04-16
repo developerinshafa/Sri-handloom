@@ -39,7 +39,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50">
       <div className="flex justify-between items-center px-10 py-1 bg-white text-black font-semibold text-2xl">
-        <img src="./Sri_Hanloom.png" alt="Logo" className="w-40" />
+        <img src="/Sri_Hanloom.png" alt="Logo" className="w-40" />
 
         {/* 🔍 Search Bar */}
         <div className="flex items-center border border-gray-500 rounded-md px-3 py-2 gap-2">
@@ -57,8 +57,7 @@ const Header = () => {
           />
         </div>
         {/* user */}
-          <UserMenu/>
-      
+        <UserMenu />
       </div>
 
       {/* Navbar section */}
@@ -85,8 +84,6 @@ const Header = () => {
             >
               Products
             </Link>
-
-           
 
             {/* <Link
               href="/products/Sarongs"
@@ -135,7 +132,6 @@ const Header = () => {
             >
               About
             </Link>
-            
           </div>
           <div className="flex space-x-4">
             <Link href="/cart">
