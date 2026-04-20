@@ -38,84 +38,67 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="flex justify-between items-center px-10 py-1 bg-white text-black font-semibold text-2xl">
+      <div className="flex justify-between items-center px-15 py-1 bg-white ">
         <img src="/Sri_Hanloom.png" alt="Logo" className="w-40" />
 
-        {/* 🔍 Search Bar */}
-        <div className="flex items-center border border-gray-500 rounded-md px-3 py-2 gap-2">
-          <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
-
-          <input
-            type="text"
-            placeholder="  Search products..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleSearch();
-            }}
-            className="outline-none w-full"
-          />
-        </div>
-        {/* user */}
-        <UserMenu />
-      </div>
-
-      {/* Navbar section */}
-      <div className="flex items-center justify-between bg-black text-white px-5 py-2">
-        <nav className="w-full flex justify-between items-center px-10  pb-2 font-semibold text-2xl">
-          {/* <div>
-            <Link href="/all-categories" className="hover:text-orange-600">
-              All Categories
-            </Link>
-          </div> */}
-          <div className="space-x-10 ">
-            <Link
+        {/* Navbar section */}
+        <nav className="w-full flex justify-between items-center px-5 font-semibold text-xl">
+          <div className="space-x-7 ">
+            {/* <Link
               href="/"
               onClick={() => router.push("/")}
               className="hover:text-orange-400"
             >
               Home
-            </Link>
+            </Link> */}
 
-            <Link
+            {/* <Link
               href="/products"
               onClick={() => router.push("/products")}
               className="hover:text-orange-400"
             >
               Products
+            </Link> */}
+
+            <Link
+              href="/products/Sarees"
+              onClick={() => router.push("/products/Sarees")}
+              className="hover:text-orange-400"
+            >
+              Sarees
             </Link>
 
-            {/* <Link
+            <Link
               href="/products/Sarongs"
               onClick={() => router.push("/products/Sarongs")}
               className="hover:text-orange-400"
             >
               Sarongs
-            </Link> */}
+            </Link>
 
-            {/* <Link
+            <Link
               href="/products/Shirts"
               onClick={() => router.push("/products/Shirts")}
               className="hover:text-orange-400"
             >
               Shirts
-            </Link> */}
+            </Link>
 
-            {/* <Link
+            <Link
               href="/products/Tops"
               onClick={() => router.push("/products/Tops")}
               className="hover:text-orange-400"
             >
               Tops
-            </Link> */}
+            </Link>
 
-            {/* <Link
+            <Link
               href="/products/Materials"
               onClick={() => router.push("/products/Materials")}
               className="hover:text-orange-400"
             >
               Materials
-            </Link> */}
+            </Link>
 
             {/* <Link
               href="/products/handbags"
@@ -133,19 +116,33 @@ const Header = () => {
               About
             </Link>
           </div>
-          <div className="flex space-x-4">
+
+          {/* 🔍 Search Bar */}
+
+          <div className="flex space-x-8">
+            <div className="flex items-center border border-gray-200 rounded-md px-3 gap-2">
+              <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
+
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSearch();
+                }}
+                className="outline-none w-64  "
+              />
+            </div>
+
+            {/* user */}
+            <UserMenu />
+
             <Link href="/cart">
-              <button className=" text-white px-4 py-1 rounded-md cursor-pointer">
+              <button className=" text-black px-2 py-3 rounded-md cursor-pointer">
                 <FontAwesomeIcon icon={faCartShopping} />
               </button>
             </Link>
-            {/* <div>
-            <Link href="/dashboard">
-              <button className="bg-gray-400 text-white px-4 py-1 rounded-md cursor-pointer">
-                Admin
-              </button>
-            </Link>
-          </div> */}
           </div>
         </nav>
       </div>

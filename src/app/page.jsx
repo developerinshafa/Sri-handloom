@@ -13,10 +13,18 @@ const images = [
 export default function Home() {
   const [current, setCurrent] = useState(0);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     const slider = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
     }, 6000);
+
+    // Check for user in localStorage (client-side only)
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsLoggedIn(true);
+    }
 
     return () => clearInterval(slider);
   }, []);

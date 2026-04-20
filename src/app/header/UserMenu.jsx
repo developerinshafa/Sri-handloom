@@ -28,14 +28,14 @@ useEffect(() => {
       <div
         ref={ref}
         onClick={() => setOpen(!open)}
-        className="cursor-pointer "
+        className="cursor-pointer py-3"
       >
         <FontAwesomeIcon icon={faUser} />
       </div>
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md py-2 z-50">
+        <div className="absolute right-0 bg-white shadow-lg rounded-md z-50">
           
           <Link href="/login">
             <p className="px-4 py-2 hover:bg-gray-100 cursor-pointer">

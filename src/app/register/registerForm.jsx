@@ -8,27 +8,36 @@ export default function RegisterForm() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  function submitLogin(e) {
+  async function submitLogin(e) {
     e.preventDefault();
 
-    // console.log("Registering user with data:", { name, email, password });
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
 
-    fetch("http://localhost:5000/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        alert(data.message);
-        // console.log(data);
-      })
-
-      .catch((error) => {
-        console.error("Error registering user:", error);
+    try {
+      const response = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        // Redirect to login after successful registration
+        window.location.href = "/login";
+      } else {
+        alert(data.error || "Registration failed");
+      }
+    } catch (error) {
+      console.error("Error registering user:", error);
+      alert("Failed to connect to server");
+    }
   }
 
   return (
