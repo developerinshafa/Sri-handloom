@@ -9,10 +9,11 @@ export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,12 +22,14 @@ export default function LoginForm() {
       });
 
       const data = await response.json();
-
       if (response.ok) {
+        document.cookie = `token=${encodeURIComponent(data.token)}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`; // Store token in cookie
+        // Store the token in localStorage
+        // localStorage.setItem("token", data.token);
+
+        window.location.href = "/dashboard"; // Force page reload to update auth state
+
         alert(data.message);
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify({ email }));
-        router.push("/");
       } else {
         alert(data.error);
       }
@@ -37,7 +40,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="space-y-2 " onSubmit={handleLogin}>
+    <form className="space-y-2 " onSubmit={handleSubmit}>
       <label
         htmlFor="email"
         className="text-left text-sm font-medium text-gray-700"

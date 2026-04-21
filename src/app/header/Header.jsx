@@ -52,13 +52,13 @@ const Header = () => {
               Home
             </Link> */}
 
-            {/* <Link
+            <Link
               href="/products"
               onClick={() => router.push("/products")}
               className="hover:text-orange-400"
             >
               Products
-            </Link> */}
+            </Link>
 
             <Link
               href="/products/Sarees"
