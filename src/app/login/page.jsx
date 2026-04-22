@@ -1,7 +1,6 @@
 import LoginForm from "./LoginForm";
 
 export default function LoginPage() {
-
   return (
     <div className=" flex items-center justify-center bg-gray-200 p-5">
       {/* Card */}
@@ -11,8 +10,7 @@ export default function LoginPage() {
           Login to Your Account
         </h1>
 
-       <LoginForm />
-
+        <LoginForm />
       </div>
     </div>
   );

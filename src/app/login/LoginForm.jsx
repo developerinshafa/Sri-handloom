@@ -1,5 +1,7 @@
 "use client";
 
+import Input from "@/components/ui/forms/Input";
+import Label from "@/components/ui/forms/Label";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -41,26 +43,27 @@ export default function LoginForm() {
 
   return (
     <form className="space-y-2 " onSubmit={handleSubmit}>
-      <label
+      <Label
         htmlFor="email"
+        required
         className="text-left text-sm font-medium text-gray-700"
       >
         Email
-      </label>
-      <input
-        type="email"
+      </Label>
+      <Input
         id="email"
+        type="email"
+        className="w-full p-1 px-3 bg-gray-100 rounded-md"
         placeholder="Enter your Email "
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full p-3 rounded-md bg-gray-100 outline-none"
-        required
       />
 
-      <label htmlFor="password" className="text-left text-sm font-medium">
+      <Label htmlFor="password" required className="text-left text-sm font-medium">
         Password
-      </label>
-      <input
+      </Label>
+      <Input
+        id="password"
         type="password"
         placeholder="Password"
         required
