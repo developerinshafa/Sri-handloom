@@ -5,7 +5,7 @@
   "scripts": {
     "ui": "cd ui && npm run dev",
     "server": "cd server && npm run dev",
-    "dev": "next dev",
+    "dev": "concurrently \"npm run ui\" \"npm run server\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -14,6 +14,7 @@
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.3.0",
+    "concurrently": "^9.2.1",
     "next": "^16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
@@ -25,13 +26,16 @@
     "eslint-config-next": "16.2.1",
     "tailwindcss": "^4"
   },
-  "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "description": "This is a handloom website.",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/developerinshafa/sri-handloon-web.git"
   },
-  "keywords": [],
+  "keywords": [
+    "handloom",
+    "website"
+  ],
   "author": "Fathima Inshafa",
   "license": "MIT",
   "type": "module",
