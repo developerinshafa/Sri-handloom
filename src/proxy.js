@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
+
 export function proxy(request) {
   const token = request.cookies.get("token")?.value;
 
-  console.log("Middleware checking token:", token);
   console.log("Proxy checking token:", token);
 
   if (!token) {

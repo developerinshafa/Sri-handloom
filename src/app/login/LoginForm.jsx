@@ -2,100 +2,106 @@
 
 import Input from "@/components/ui/forms/Input";
 import Label from "@/components/ui/forms/Label";
+import { useForm } from "react-hook-form";
+import FormError from "@/components/ui/forms/FormError";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+
+const schema = z.object({
+  email: z.email("Invalid email address"), 
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
 
 export default function LoginForm() {
-  const router = useRouter();
+  const { login } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: zodResolver(schema),
+    mode: "onChange",    // important for isValid
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (data) => {
     try {
-      const response = await fetch("/api/login", {
+      const response = await fetch('/api/login', {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            'Content-Type': 'application/json', 
         },
-        body: JSON.stringify({ email, password }),
+        credentials: "include",
+        body: JSON.stringify(data),
       });
 
-      const data = await response.json();
+      const loginData = await response.json();
+
       if (response.ok) {
-        document.cookie = `token=${encodeURIComponent(data.token)}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`; // Store token in cookie
-        // Store the token in localStorage
-        // localStorage.setItem("token", data.token);
+        login(loginData.user); // user must come from backend
 
-        window.location.href = "/dashboard"; // Force page reload to update auth state
+        // alert(loginData.message || "Login successful");
 
-        alert(data.message);
+        router.push("/dashboard"); // redirect
       } else {
-        alert(data.error);
+        alert(loginData.error || "Login failed");
       }
     } catch (error) {
       console.error("Error logging in:", error);
-      alert("Failed to login user.");
+      alert("Failed to login user");
     }
   };
 
   return (
-    <form className="space-y-2 " onSubmit={handleSubmit}>
-      <Label
-        htmlFor="email"
-        required
-        className="text-left text-sm font-medium text-gray-700"
-      >
-        Email
-      </Label>
-      <Input
-        id="email"
-        type="email"
-        className="w-full p-1 px-3 bg-gray-100 rounded-md"
-        placeholder="Enter your Email "
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <Label htmlFor="email">Email</Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="Enter your Email"
+          {...register("email")}
+        />
+        <FormError message={errors.email?.message} />
+      </div>
 
-      <Label htmlFor="password" required className="text-left text-sm font-medium">
-        Password
-      </Label>
-      <Input
-        id="password"
-        type="password"
-        placeholder="Password"
-        required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full p-3 rounded-md bg-gray-100 outline-none"
-      />
+      <div>
+        <Label htmlFor="password">Password</Label>
+        <Input
+          id="password"
+          type="password"
+          placeholder="Enter your Password"
+          {...register("password")}
+        />
+        <FormError message={errors.password?.message} />
+      </div>
 
-      {/* Forgot Password */}
       <div className="text-right">
-        <a href="#" className="text-red-600 text-sm">
+        <a href="#" className="text-red-400 hover:text-red-600 text-sm">
           Forgot Password?
         </a>
       </div>
 
-      {/* Login Button */}
       <button
         type="submit"
-        disabled={!email || !password}
-        className={`w-full py-3 rounded-md text-white font-semibold cursor-pointer
-            ${
-              !email || !password
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-800 hover:bg-blue-900"
-            }
-          `}
+        disabled={!isValid}
+        className={`w-full py-2 rounded-md text-white font-semibold duration-300
+        ${
+          isValid
+            ? "bg-blue-500 hover:bg-blue-700 cursor-pointer"
+            : "bg-blue-500 opacity-50 cursor-not-allowed"
+        }`}
       >
         LOG IN
       </button>
 
-      <div className="p-3 text-center text-sm">
-        <a href="/register" className="text-indigo-500 hover:text-indigo-700 ">
+      <div className="p-1 text-center text-sm">
+        <a href="/register" className="text-indigo-500 hover:text-indigo-700">
           Don&apos;t have an account? Register here
         </a>
       </div>

@@ -1,3 +1,3 @@
-export default function FormError({ children }) {
-  return <p className="text-red-500 text-sm mt-1">{children}</p>;
+export default function FormError({ message }) {
+ return message ? <p className="text-red-500 text-sm">{message}</p> : null;
 }

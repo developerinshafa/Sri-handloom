@@ -84,10 +84,10 @@ const products = [
 
 export default function ProductsPage() {
   return (
-    <div className="bg-blue-950 min-h-screen py-10 px-10">
+    <div className="bg-gray-200 min-h-screen py-10 px-10">
       
       {/* Title */}
-      <h1 className="text-5xl text-white font-bold text-center mb-10">
+      <h1 className="text-5xl text-black font-bold text-center mb-10">
         Sarees Collections
       </h1>
 

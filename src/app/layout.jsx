@@ -1,7 +1,13 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./header/Header";
+import Header from "../components/header/Header";
 import Footer from "./Footer";
+import AuthProvider from "@/context/AuthProvaider";
+
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+
+config.autoAddCss = false;
 
 const inter = Inter({
   weight: ["400", "500", "600", "700"],
@@ -16,15 +22,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html
+     lang="en" 
+     className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+       <AuthProvider>
         <Header />
 
-        <main className="flex-1">
-          {children}
-          </main>
+        <main className="flex-1">{children}</main>
 
         <Footer />
+       </AuthProvider>
+  
       </body>
     </html>
   );

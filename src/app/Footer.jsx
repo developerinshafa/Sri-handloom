@@ -14,7 +14,7 @@ export default function Footer() {
               for personalized assistance and inquiries.
             </p>
           </div>
-          <div className="space-y-4 items-center justify-center">
+          <div className="space-y-4 items-center justify-between pt-8 ">
             <h1 className="text-4xl text-orange-600 ">Pages</h1>
             <div className="space-x-10 grid">
               <Link href="/" className="hover:text-orange-600">

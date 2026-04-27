@@ -4,23 +4,14 @@ import { useForm } from "react-hook-form";
 import Input from "@/components/ui/forms/Input";
 import Label from "@/components/ui/forms/Label";
 import FormError from "@/components/ui/forms/FormError";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-  name: z.string().min(5, "Name must be at least 5 characters long"),
-  email: z.string().email("Invalid email address"),
-  password: z
-    .string()
-    .min(5, "Password must be at least 5 characters long")
-    .max(100),
-  confirmPassword: z
-    .string()
-    .min(5, "Please confirm your password")
-    .refine((value) => {
-      const password = schema.shape.password.safeParse("");
-      return password.success && value === password.data;
-    }, "Passwords do not match"),
+  name: z.string().min(3, "Name must be at least 3 characters "),
+  email: z.email("Invalid email address"),
+  password: z.string().min(5, "Password must be at least 5 characters"),
+  confirmPassword: z.string().min(5, "Please confirm your password"),
 });
 
 export default function RegisterForm() {
@@ -28,14 +19,15 @@ export default function RegisterForm() {
     register,
     handleSubmit,
     formState: { errors, isValid },
+    reset,
   } = useForm({
-    resolver: zodResolver(schema),
     defaultValues: {
       name: "",
       email: "",
       password: "",
       confirmPassword: "",
     },
+    resolver: zodResolver(schema),
   });
 
   async function submitLogin(fromData) {
@@ -52,7 +44,6 @@ export default function RegisterForm() {
       alert(data.message || data.error);
 
       if (response.ok) {
-        // Clear form fields after successful registration
         reset();
       }
     } catch (error) {
@@ -66,7 +57,6 @@ export default function RegisterForm() {
         <h1 className="text-2xl text-center font-semibold mb-4">
           Register for an Account
         </h1>
-
         <form onSubmit={handleSubmit(submitLogin)}>
           <div>
             <Label htmlFor="name" required>
@@ -78,7 +68,7 @@ export default function RegisterForm() {
               placeholder="Enter your Name"
               {...register("name")}
             />
-            <FormError error={errors.name?.message} />
+            <FormError message={errors.name?.message} />
           </div>
 
           <div>
@@ -88,11 +78,10 @@ export default function RegisterForm() {
             <Input
               id="email"
               type="email"
-              className="w-full p-1 px-3 bg-gray-100 rounded-md"
               placeholder="Enter your Email "
               {...register("email")}
             />
-            <FormError error={errors.email?.message} />
+            <FormError message={errors.email?.message} />
           </div>
 
           <div>
@@ -103,11 +92,9 @@ export default function RegisterForm() {
               id="password"
               type="password"
               placeholder="Enter your Password"
-              value={password}
-              className="w-full p-1 px-3 bg-gray-100 rounded-md"
               {...register("password")}
             />
-            <FormError error={errors.password?.message} />
+            <FormError message={errors.password?.message} />
           </div>
 
           <div>
@@ -118,35 +105,29 @@ export default function RegisterForm() {
               id="confirmPassword"
               type="password"
               placeholder="Password again"
-              className="w-full p-1 px-3 bg-gray-100 rounded-md"
               {...register("confirmPassword")}
             />
-            <FormError error={errors.confirmPassword?.message} />
+            <FormError message={errors.confirmPassword?.message} />
           </div>
 
-          <div className="flex justify-between items-center gap-5">
+          <div className="flex justify-between items-center gap-5 py-2">
             <button
-              type="button"
+              type="submit"
               className="border border-gray-200 p-1 px-4 rounded-md hover:bg-gray-300 transition duration-300 cursor-pointer"
               onClick={() => {
-                setName("");
-                setEmail("");
-                setPassword("");
-                setConfirmPassword("");
+                reset();
               }}
             >
               Cancel
             </button>
             <button
               type="submit"
-              disabled={isValid}
-              className={`px-8 py-1 rounded-md text-white
-                ${
-                  password !== confirmPassword
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green-700 cursor-pointer hover:bg-green-800"
-                }
-            `}
+              className={
+              ` bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-1 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer` +
+              (isValid ? "" : " opacity-50 cursor-not-allowed")
+            }
+            
+              disabled={!isValid}
             >
               REGISTER
             </button>
