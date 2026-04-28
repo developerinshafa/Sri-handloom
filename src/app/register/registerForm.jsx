@@ -7,12 +7,17 @@ import FormError from "@/components/ui/forms/FormError";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const schema = z.object({
-  name: z.string().min(3, "Name must be at least 3 characters "),
-  email: z.email("Invalid email address"),
-  password: z.string().min(5, "Password must be at least 5 characters"),
-  confirmPassword: z.string().min(5, "Please confirm your password"),
-});
+const schema = z
+  .object({
+    name: z.string().min(3, "Name must be at least 3 characters"),
+    email: z.email("Invalid email address"),
+    password: z.string().min(5, "Password must be at least 5 characters"),
+    confirmPassword: z.string().min(5, "Please confirm your password"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 export default function RegisterForm() {
   const {
@@ -28,16 +33,18 @@ export default function RegisterForm() {
       confirmPassword: "",
     },
     resolver: zodResolver(schema),
+    mode: "onChange",
   });
 
-  async function submitLogin(fromData) {
+  async function submitRegister(formData) {
     try {
       const response = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(fromData),
+        credentials: "include",
+        body: JSON.stringify(formData),
       });
 
       const data = await response.json();
@@ -57,43 +64,23 @@ export default function RegisterForm() {
         <h1 className="text-2xl text-center font-semibold mb-4">
           Register for an Account
         </h1>
-        <form onSubmit={handleSubmit(submitLogin)}>
+
+        <form onSubmit={handleSubmit(submitRegister)}>
           <div>
-            <Label htmlFor="name" required>
-              Name
-            </Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Enter your Name"
-              {...register("name")}
-            />
+            <Label htmlFor="name" required>Name</Label>
+            <Input id="name" {...register("name")} />
             <FormError message={errors.name?.message} />
           </div>
 
           <div>
-            <Label htmlFor="email" required>
-              Email
-            </Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="Enter your Email "
-              {...register("email")}
-            />
+            <Label htmlFor="email" required>Email</Label>
+            <Input id="email" type="email" {...register("email")} />
             <FormError message={errors.email?.message} />
           </div>
 
           <div>
-            <Label htmlFor="password" required>
-              Password
-            </Label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="Enter your Password"
-              {...register("password")}
-            />
+            <Label htmlFor="password" required>Password</Label>
+            <Input id="password" type="password" {...register("password")} />
             <FormError message={errors.password?.message} />
           </div>
 
@@ -104,39 +91,30 @@ export default function RegisterForm() {
             <Input
               id="confirmPassword"
               type="password"
-              placeholder="Password again"
               {...register("confirmPassword")}
             />
             <FormError message={errors.confirmPassword?.message} />
           </div>
 
-          <div className="flex justify-between items-center gap-5 py-2">
+          <div className="flex justify-between gap-5 py-2">
+            {/* FIXED BUTTON */}
             <button
-              type="submit"
-              className="border border-gray-200 p-1 px-4 rounded-md hover:bg-gray-300 transition duration-300 cursor-pointer"
-              onClick={() => {
-                reset();
-              }}
+              type="button"
+              onClick={() => reset()}
+              className="border p-1 px-4 rounded-md"
             >
               Cancel
             </button>
+
             <button
               type="submit"
-              className={
-              ` bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-1 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 cursor-pointer` +
-              (isValid ? "" : " opacity-50 cursor-not-allowed")
-            }
-            
               disabled={!isValid}
+              className={`bg-blue-500 text-white px-6 py-1 rounded ${
+                !isValid && "opacity-50"
+              }`}
             >
               REGISTER
             </button>
-          </div>
-          {/* Register */}
-          <div className="text-center text-sm">
-            <a href="/login" className="text-indigo-500 hover:text-indigo-700 ">
-              Don&apos;t have an account? Login here
-            </a>
           </div>
         </form>
       </div>

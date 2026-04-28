@@ -31,32 +31,32 @@ export default function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('/api/login', {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json', 
-        },
-        credentials: "include",
-        body: JSON.stringify(data),
-      });
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify(data),
+    });
 
-      const loginData = await response.json();
-
-      if (response.ok) {
-        login(loginData.user); // user must come from backend
-
-        // alert(loginData.message || "Login successful");
-
-        router.push("/dashboard"); // redirect
-      } else {
-        alert(loginData.error || "Login failed");
-      }
-    } catch (error) {
-      console.error("Error logging in:", error);
-      alert("Failed to login user");
+    if (!response.ok) {
+      throw new Error("Login failed");
     }
-  };
 
+    const me = await refreshSession();
+    if (me) {
+      if (me.role === "admin") {
+        router.push("/dashboard");
+      } else {
+        router.push("/");
+      }
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    throw error;
+  }
+};
   return (
     <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
       <div>

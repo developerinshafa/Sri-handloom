@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html
      lang="en" 
      className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
        <AuthProvider>
         <Header />
 
@@ -38,3 +38,17 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en" className={`${inter.variable} h-full antialiased`}>
+//       <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
+//         <AuthProvider>
+//           <Header />
+//           {children}
+//         </AuthProvider>
+//       </body>
+//     </html>
+//   );
+// }

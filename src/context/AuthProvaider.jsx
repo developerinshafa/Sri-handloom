@@ -11,36 +11,7 @@ export default function AuthProvider({ children }) {
 
   const isAuthenticated = !!user;
 
-  // useEffect(() => {
-  //     async function loadLoginSession() {
-  //         try {
-  //             const response = await fetch("/api/me", {      //end point to get current user session
-  //                 method: "GET",
-  //                 headers: {
-  //                     "Content-Type": "application/json",
-  //                 },
-  //                 credentials: "include",
-  //             });
-
-  //             if (response.ok) {
-  //                 const data = await response.json();
-  //                 setUser(data.user);
-  //             } else {
-  //                 setUser(null);
-  //             }
-
-  //         } catch (error) {
-  //             console.error("Error fetching user:", error);
-  //             setUser(null);
-  //         } finally {
-  //             setLoading(false);
-  //         }
-  //     }
-
-  //     loadLoginSession();
-  //     }, []);
-
-  const refreshSession = useCallback(async () => {
+    const refreshSession = useCallback(async () => {
     try {
       const response = await fetch("/api/me", {
         method: "GET",
@@ -53,8 +24,8 @@ export default function AuthProvider({ children }) {
       }
 
       const data = await response.json();
-      setUser(data.user || null);
-      return data.user || null;
+      setUser(data.user);
+      return data.user;
     } catch {
       setUser(null);
       return null;
@@ -71,8 +42,12 @@ export default function AuthProvider({ children }) {
   //login function to set user data and redirect to dashboard
   const login = async () => {
     const me = await refreshSession();
-    if (me) {
-      router.push("/dashboard");
+      if (me) {
+      if (me.role === "admin") {
+        router.push("/dashboard");
+      } else {
+        router.push("/");
+      }
     }
   };
 
