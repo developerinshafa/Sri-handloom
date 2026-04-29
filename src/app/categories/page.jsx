@@ -4,11 +4,12 @@ export default function CategoriesPage() {
   return (
     <>
       {/* All Categories */}
-      <div className="bg-gray-50 p-2 ">
+      <div className="bg-gray-50 p-2 pb-10 ">
         <div className="py-8 px-5 ">
           <h1 className="text-4xl px-5 font-bold">Categories</h1>
         </div>
         <div className="grid grid-cols-5 w-full gap-3 px-8 py-5">
+          
           {/* sarees */}
           <div className="relative w-60 h-40 bg-gray-100 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
             {/* Image */}
@@ -19,7 +20,7 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-bold mb-2">Sarees</h2>
+              <h2 className="text-2xl font-bold mb-2 cursor-pointer">Sarees</h2>
               {/* <Link href="/products/sarees">
                 <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
                   View

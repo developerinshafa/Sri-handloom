@@ -13,8 +13,9 @@ export default function AuthProvider({ children }) {
 
     const refreshSession = useCallback(async () => {
     try {
-      const response = await fetch("/api/me", {
+      const response = await fetch(`/api/me`, {
         method: "GET",
+        headers: { "Content-Type": "application/json" },
         credentials: "include",
       });
 
@@ -44,9 +45,9 @@ export default function AuthProvider({ children }) {
     const me = await refreshSession();
       if (me) {
       if (me.role === "admin") {
-        router.push("/dashboard");
+        router.push("/admin");
       } else {
-        router.push("/");
+        router.push("/dashboard");
       }
     }
   };
@@ -65,7 +66,7 @@ export default function AuthProvider({ children }) {
       console.error("Error during logout:", error);
     }
     setUser(null);
-    router.push("/login");
+    router.push("/");
   };
 
   const value = {

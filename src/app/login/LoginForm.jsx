@@ -7,11 +7,11 @@ import FormError from "@/components/ui/forms/FormError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useAuth } from "@/context/AuthContext";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const schema = z.object({
   email: z.email("Invalid email address"), 
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(4, "Password must be at least 4 characters"),
 });
 
 export default function LoginForm() {
@@ -22,7 +22,7 @@ export default function LoginForm() {
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(schema),
-    mode: "onChange",    // important for isValid
+    mode: "onChange",    
     defaultValues: {
       email: "",
       password: "",
@@ -30,32 +30,27 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data) => {
-    try {
-    const response = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(data),
-    });
+      try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify({ email: data.email, password: data.password }),
+      });
 
-    if (!response.ok) {
-      throw new Error("Login failed");
-    }
+      const loginData = await response.json();
 
-    const me = await refreshSession();
-    if (me) {
-      if (me.role === "admin") {
-        router.push("/dashboard");
+      if (response.ok) {
+        await login();
+        alert("logged in successfully");
       } else {
-        router.push("/");
+        alert(loginData.error);
       }
+    } catch (error) {
+      alert("Failed to login");
     }
-  } catch (error) {
-    console.error("Login error:", error);
-    throw error;
-  }
 };
   return (
     <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>

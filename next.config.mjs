@@ -22,8 +22,8 @@ const nextConfig = {
       afterFiles: [
         {
           source: "/api/:path*",
-          destination: "http://localhost:5000/:path*", // Your Node.js backend
-            // destination: `${proxyUrl}/:path*`, // Proxy to Backend
+          // destination: "http://localhost:5000/:path*",
+          destination: `${proxyUrl}/:path*`, // Proxy to Backend
         },
       ],
     };

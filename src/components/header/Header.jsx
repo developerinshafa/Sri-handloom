@@ -4,11 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartShopping,
-  faSearch,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Header() {
@@ -36,20 +32,34 @@ export default function Header() {
         {/* Logo */}
         <img src="/Sri_Hanloom.png" alt="Logo" className="w-40" />
 
-        {/* 🔍 Search */}
-        <div className="flex items-center border border-gray-300 rounded-md px-3 gap-2">
-          <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
-          <input
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            className="outline-none w-full px-4 py-2"
-          />
-        </div>
+      {/* Navigation */}
+      <nav className="flex justify-center gap-10 py-3 text-black text-xl font-bold">
+        {!isAuthenticated ? (
+          <>
+            <Link href="/" className="hover:text-orange-500 pt-3">Home</Link>
+            <Link href="/Products" className="hover:text-orange-500 pt-3">Shop</Link>
 
-        {/* Right Section */}
+            {/* 🔍 Search */}
+        <   div className="flex items-center border border-gray-200 bg-white rounded-md px-3 gap-2">
+              <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="outline-none px-4 py-2 w-60"
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <Link href="/dashboard" className="hover:text-orange-500">Dashboard</Link>
+            <Link href="/dashboard/products" className="hover:text-orange-500">All Products</Link>
+          </>
+        )}
+      </nav>
+
+       {/* Right Section */}
         <div className="flex items-center gap-5">
 
           {/* Auth Section */}
@@ -58,7 +68,7 @@ export default function Header() {
               <FontAwesomeIcon icon={faUser} className="text-2xl cursor-pointer" />
             </Link>
           ) : (
-            <div className="flex items-center gap-3 text-black">
+            <div className="flex items-center gap-3 text-orange-500 font-semibold">
               <span>Hi, {user?.name}</span>
 
               <img
@@ -69,7 +79,10 @@ export default function Header() {
                 alt="avatar"
               />
 
-              <button onClick={logout} title="Logout">
+              <button onClick={logout} 
+              title="Logout" 
+              className="px-2 py-1 rounded"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 text-2xl"
@@ -82,34 +95,40 @@ export default function Header() {
             </div>
           )}
 
+          <button
+            data-collapse-toggle="navbar-sticky"
+            type="button"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+            aria-controls="navbar-sticky"
+            aria-expanded="false"
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-6 h-6"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeWidth="2"
+                d="M5 7h14M5 12h14M5 17h14"
+              />
+            </svg>
+          </button>
+
           {/* Cart */}
           <Link href="/cart">
             <FontAwesomeIcon icon={faCartShopping} className="text-2xl cursor-pointer" />
           </Link>
         </div>
       </div>
-
-      {/* Navigation */}
-      <nav className="flex justify-center gap-10 py-2 border-t bg-black text-white text-xl font-bold">
-        {!isAuthenticated ? (
-          <>
-            <Link href="/" className="hover:text-orange-500">Home</Link>
-            <Link href="/products" className="hover:text-orange-500">Products</Link>
-            <Link href="/products/sarees" className="hover:text-orange-500">Sarees</Link>
-            <Link href="/products/sarongs" className="hover:text-orange-500">Sarongs</Link>
-            <Link href="/products/shirts" className="hover:text-orange-500">Shirts</Link>
-            <Link href="/products/materials" className="hover:text-orange-500">Materials</Link>
-            <Link href="/products/lungis" className="hover:text-orange-500">Lungis</Link>
-            <Link href="/products/tops" className="hover:text-orange-500">Tops</Link>
-            <Link href="/about" className="hover:text-orange-500">About</Link>
-          </>
-        ) : (
-          <>
-            <Link href="/dashboard" className="hover:text-orange-500">Dashboard</Link>
-            <Link href="/dashboard/products" className="hover:text-orange-500">Products</Link>
-          </>
-        )}
-      </nav>
     </header>
   );
 }
+
+ 

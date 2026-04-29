@@ -15,8 +15,13 @@ export async function POST(request) {
     if (!backendResponse.ok) {
       return Response.json(data, { status: backendResponse.status });
     }
+    const setCookie = backendResponse.headers.get("set-cookie");
+    const headers = new Headers();
+    if (setCookie) {
+      headers.set("set-cookie", setCookie);
+    }
+    return Response.json(data, { status: 200, headers });
 
-    return Response.json(data, { status: 200 });
   } catch (error) {
     console.error("Login API error:", error);
     return Response.json(

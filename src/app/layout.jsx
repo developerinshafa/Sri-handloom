@@ -26,14 +26,14 @@ export default function RootLayout({ children }) {
      lang="en" 
      className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
+      
        <AuthProvider>
-        <Header />
+         <Header />
 
         <main className="flex-1">{children}</main>
 
-        <Footer />
+         <Footer />
        </AuthProvider>
-  
       </body>
     </html>
   );

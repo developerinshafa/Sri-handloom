@@ -109,12 +109,17 @@ export default function RegisterForm() {
             <button
               type="submit"
               disabled={!isValid}
-              className={`bg-blue-500 text-white px-6 py-1 rounded ${
+              className={`bg-blue-500 text-white px-6 py-1 rounded cursor-pointer ${
                 !isValid && "opacity-50"
               }`}
             >
               REGISTER
             </button>
+          </div>
+          <div className="p-1 text-center text-sm">
+            <a href="/login" className="text-indigo-500 hover:text-indigo-700">
+              Don&apos;t have an account? Login here
+            </a>
           </div>
         </form>
       </div>
