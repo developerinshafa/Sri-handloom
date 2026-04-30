@@ -5,7 +5,7 @@
   "scripts": {
     "ui": "cd ui && npm run dev",
     "server": "cd server && npm run dev",
-    "dev": "concurrently \"npm run ui\" \"npm run server\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -14,15 +14,11 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.3.0",
-<<<<<<< HEAD
     "@hookform/resolvers": "^5.2.2",
     "cors": "^2.8.6",
     "jose": "^6.2.3",
-    "next": "16.2.3",
-=======
     "concurrently": "^9.2.1",
     "next": "^16.2.4",
->>>>>>> 4166a25cdaafcac6ce6495d323d19dbef65dfc88
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.73.1",

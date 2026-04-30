@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
+import AuthProvider from "@/context/AuthProvider";
 import { useRouter } from "next/navigation";
 
 export default function AuthProvider({ children }) {

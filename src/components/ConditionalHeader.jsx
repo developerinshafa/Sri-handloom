@@ -1,11 +1,11 @@
-// "use client";
+"use client";
 
-// import { usePathname } from "next/navigation";
-// import Header from "@/components/Header";
+import { usePathname } from "next/navigation";
+import Header from "@/components/Header";
 
-// export default function ConditionalHeader() {
-//   const pathname = usePathname();
-//   const isAdminRoute = pathname.startsWith("/admin");
+export default function ConditionalHeader() {
+  const pathname = usePathname();
+  const isAdminRoute = pathname.startsWith("/admin");
 
-//   return !isAdminRoute && <Header />;
-// }
+  return !isAdminRoute && <Header />;
+}

@@ -1,13 +1,20 @@
-"use client";
+import { createContext, useContext, useState } from "react";
 
-import { createContext, useContext } from "react";
+const AuthContext = createContext();
 
-export const AuthContext = createContext();
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("Auth must be used within an AuthProvider");
-  }
-  return context;
+  const login = (data) => setUser(data);
+  const logout = () => setUser(null);
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
+
+export const useAuth = () => useContext(AuthContext);
+
+export default AuthContext;

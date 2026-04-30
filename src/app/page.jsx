@@ -6,9 +6,10 @@ import ReviewSection from "./review/page";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLongArrowAltRight } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import ProductsPage from "./products/page";
-import SecondSlider from "@/components/SecondSlider";
+// import Link from "next/link";
+// import ProductsPage from "./products/page";
+// import SecondSlider from "@/components/SecondSlider";
+
 
 const images = [
   "https://img.freepik.com/premium-photo/national-handloom-day-copy-space_548646-44707.jpg?semt=ais_hybrid&w=740&q=80",
