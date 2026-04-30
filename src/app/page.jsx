@@ -11,7 +11,7 @@ import ProductsPage from "./products/page";
 
 const images = [
   "https://img.freepik.com/premium-photo/national-handloom-day-copy-space_548646-44707.jpg?semt=ais_hybrid&w=740&q=80",
-  "./satee-galery.jpg",
+  "./saree-gallery.jpg",
   "https://t3.ftcdn.net/jpg/09/06/15/44/360_F_906154430_lL8mh7eayXqrrPuy2xHDUJDKRkpDE5IH.jpg",
 ];
 
@@ -49,7 +49,8 @@ export default function Home() {
         <div className="py-15 flex items-center justify-center gap-15 text-black">
           <Link href="/products">
             <button className="bg-orange-500 text-white px-5 py-3 rounded-lg hover:bg-orange-400 cursor-pointer flex items-center gap-5">
-              Shop Now <FontAwesomeIcon icon={faLongArrowAltRight} className="text-xl" />
+              Shop Now{" "}
+              <FontAwesomeIcon icon={faLongArrowAltRight} className="text-xl" />
             </button>
           </Link>
 
