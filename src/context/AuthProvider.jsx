@@ -2,10 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import AuthProvider from "@/context/AuthProvider";
 import { useRouter } from "next/navigation";
 
-export default function AuthProvider({ children }) {
+function AuthProvider({ children }) {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -81,3 +80,5 @@ export default function AuthProvider({ children }) {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+
+export { AuthProvider };

@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "@/context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
+import Link from "next/link";
+
 
 export default function Header() {
   const { user, isAuthenticated, logout } = useAuth();

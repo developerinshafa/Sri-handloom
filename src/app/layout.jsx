@@ -1,9 +1,8 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "./global.css";
 import Header from "../components/header/Header";
 import Footer from "./Footer";
-import AuthProvider from "@/context/AuthProvaider";
-
+import { AuthProvider } from "../context/AuthProvider";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
@@ -22,23 +21,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-     lang="en" 
-     className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
-      
-       <AuthProvider>
-         <Header />
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+      <body
+        className="min-h-full flex flex-col"
+        suppressHydrationWarning={true}
+      >
+        <AuthProvider>
+          <Header />
 
-        <main className="flex-1">{children}</main>
+          <main className="flex-1">{children}</main>
 
-         <Footer />
-       </AuthProvider>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );
 }
-
 
 // export default function RootLayout({ children }) {
 //   return (
