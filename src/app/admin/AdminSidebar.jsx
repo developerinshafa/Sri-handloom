@@ -1,7 +1,8 @@
 "use client";
 
-import { useAuth } from "@/context/AuthContext";
+
 import Link from "next/link";
+import { useAuth } from "../../context/AuthContext";
 
 export default function AdminSidebar() {
   const { user, logout } = useAuth();
@@ -11,7 +12,7 @@ export default function AdminSidebar() {
   return (
     <div className="w-64 bg-gray-900 text-white shadow-lg">
       <div className="p-6 border-b border-gray-700">
-        <h1 className="text-2xl font-bold">Vendaka</h1>
+        <h1 className="text-2xl font-bold">Sri Handloom</h1>
       </div>
 
       <nav className="mt-6 space-y-2">

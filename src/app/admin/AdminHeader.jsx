@@ -1,5 +1,7 @@
 "use client";
-import { useAuth } from "@/context/AuthContext";
+
+import { useAuth } from "../../context/AuthContext";
+
 
 export default function AdminHeader() {
   const { user } = useAuth();

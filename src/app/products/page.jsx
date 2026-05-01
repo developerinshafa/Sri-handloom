@@ -3,10 +3,12 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 export default function ProductsPage() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+  const router = useRouter();
 
   // Products with category added
   const products = [
@@ -139,11 +141,17 @@ export default function ProductsPage() {
 
                 {/* Overlay buttons */}
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition duration-300">
-                  <button className="bg-white text-black px-3 py-1 rounded-md text-sm hover:bg-orange-400 hover:text-white">
+                  <button
+                    onClick={() => router.push(`/products/${product.id}`)}
+                    className="bg-white text-black px-3 py-1 rounded-md text-sm hover:bg-orange-400 hover:text-white cursor-pointer"
+                  >
                     View
                   </button>
 
-                  <button className="bg-orange-500 text-white px-3 py-1 rounded-md text-sm hover:bg-orange-600">
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="bg-orange-500 text-white px-3 py-1 rounded-md text-sm hover:bg-orange-600 cursor-pointer"
+                  >
                     Add Cart
                   </button>
                 </div>

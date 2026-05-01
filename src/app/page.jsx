@@ -11,7 +11,7 @@ import ProductsPage from "./products/page";
 
 const images = [
   "https://img.freepik.com/premium-photo/national-handloom-day-copy-space_548646-44707.jpg?semt=ais_hybrid&w=740&q=80",
-  "./saree-gallery.jpg",
+  "/saree-gallery.jpg",
   "https://t3.ftcdn.net/jpg/09/06/15/44/360_F_906154430_lL8mh7eayXqrrPuy2xHDUJDKRkpDE5IH.jpg",
 ];
 
@@ -35,18 +35,18 @@ export default function Home() {
       <img
         src={images[current]}
         alt="slider"
-        className="w-full h-[75vh] object-cover transition-all duration-1000"
+        className="w-full h-[65vh] object-cover transition-all duration-1000"
       />
 
       {/* text area */}
-      <div className="absolute top-0 left-0 w-full pt-25 flex flex-col text-center justify-center text-white ">
+      <div className="absolute top-0 left-0 w-full pt-30 flex flex-col text-center justify-between text-white ">
         <h1 className="text-7xl md:text-8xl font-bold ">Handloom Collection</h1>
 
         <p className="text-3xl md:text-4xl font-semibold mt-8 ">
           Traditional Style with Modern Fashion.
         </p>
 
-        <div className="py-15 flex items-center justify-center gap-15 text-black">
+        <div className="py-20 flex items-center justify-center gap-15 text-black">
           <Link href="/products">
             <button className="bg-orange-500 text-white px-5 py-3 rounded-lg hover:bg-orange-400 cursor-pointer flex items-center gap-5">
               Shop Now{" "}
@@ -88,7 +88,7 @@ export default function Home() {
       {/* just for you */}
       <ProductsPage />
 
-      {/* review */}
+      
       <ReviewSection />
     </div>
   );

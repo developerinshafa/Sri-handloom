@@ -1,57 +1,59 @@
 "use client";
 
-import Input from "@/components/ui/forms/Input";
-import Label from "@/components/ui/forms/Label";
 import { useForm } from "react-hook-form";
-import FormError from "@/components/ui/forms/FormError";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useAuth } from "@/context/AuthContext";
-// import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
+import Label from "../../components/ui/forms/Label";
+import FormError from "../../components/forms/FormError";
+import Input from "../../components/ui/forms/Input";
+
 
 const schema = z.object({
-  email: z.email("Invalid email address"), 
+  email: z.string().email("Invalid email address"),
   password: z.string().min(4, "Password must be at least 4 characters"),
 });
 
 export default function LoginForm() {
   const { login } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(schema),
-    mode: "onChange",    
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    mode: "onChange",
   });
 
   const onSubmit = async (data) => {
-      try {
+    try {
       const response = await fetch("/api/login", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: 'include',
-        body: JSON.stringify({ email: data.email, password: data.password }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(data),
       });
 
-      const loginData = await response.json();
+      let loginData;
+
+      try {
+        loginData = await response.json();
+      } catch {
+        alert("Server error");
+        return;
+      }
 
       if (response.ok) {
         await login();
-        alert("logged in successfully");
+        alert("Logged in successfully");
       } else {
-        alert(loginData.error);
+        alert(loginData?.error || "Login failed");
       }
-    } catch (error) {
+    } catch {
       alert("Failed to login");
     }
-};
+  };
   return (
     <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
       <div>

@@ -9,7 +9,6 @@ export default function CategoriesPage() {
           <h1 className="text-4xl px-5 font-bold">Categories</h1>
         </div>
         <div className="grid grid-cols-5 w-full gap-3 px-8 py-5">
-          
           {/* sarees */}
           <div className="relative w-60 h-40 bg-gray-100 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition duration-300">
             {/* Image */}
@@ -20,12 +19,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-bold mb-2 cursor-pointer">Sarees</h2>
-              {/* <Link href="/products/sarees">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+             <Link href="/products?category=Saree">
+                <h2 className="text-2xl font-bold mb-2 cursor-pointer">
+                  Sarees
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -39,13 +37,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-semibold mb-2">Shirts</h2>
-              {/* <p className="text-sm mb-3">Stylish handloom shirts</p>
-              <Link href="/products/shirts">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+              <Link href="/products?category=Shirt">
+                <h2 className="text-2xl font-semibold mb-2 cursor-pointer">
+                  Shirts
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -59,13 +55,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-semibold mb-2">Sarongs</h2>
-              {/* <p className="text-sm mb-3">Stylish handloom Sarongs</p>
-              <Link href="/products/sarongs">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+              <Link href="/products?category=Sarong">
+                <h2 className="text-2xl font-semibold mb-2 cursor-pointer">
+                  Sarongs
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -79,13 +73,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-semibold mb-2">Tops</h2>
-              {/* <p className="text-sm mb-3">Stylish handloom Tops</p>
-              <Link href="/products/tops">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+              <Link href="/products?category=Top">
+                <h2 className="text-2xl font-semibold mb-2 cursor-pointer">
+                  Tops
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -99,13 +91,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-semibold mb-2">Materials</h2>
-              {/* <p className="text-sm mb-3">Handloom Materials</p>
-              <Link href="/products/materials">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+              <Link href="/products?category=Material">
+                <h2 className="text-2xl font-semibold mb-2 cursor-pointer">
+                 Materials
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -119,13 +109,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-semibold mb-2">Lungis</h2>
-              {/* <p className="text-sm mb-3">Handloom Lungis</p>
-              <Link href="/products/lungis">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+              <Link href="/products?category=Lungis">
+                <h2 className="text-2xl font-semibold mb-2 cursor-pointer">
+                 Lungis
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -139,13 +127,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-semibold mb-2">Bedsheets</h2>
-              {/* <p className="text-sm mb-3">Handloom Bedsheets</p>
-              <Link href="/products/bedsheets">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+            <Link href="/products?category=Bedsheet">
+                <h2 className="text-2xl font-semibold mb-2 cursor-pointer">
+                 Bedsheets
+                </h2>
+              </Link>
             </div>
           </div>
 
@@ -159,13 +145,11 @@ export default function CategoriesPage() {
             />
             {/* Overlay */}
             <div className="absolute top-15 left-0 w-full p-5 flex flex-col items-center justify-center text-white ">
-              <h2 className="text-2xl font-semibold mb-2">Handbags</h2>
-              {/* <p className="text-sm mb-3">Stylish Handbags</p>
-               <Link href="/products/handbags">
-                <button className="bg-orange-400 px-3 py-1 rounded-md cursor-pointer">
-                  View
-                </button>
-              </Link> */}
+             <Link href="/products?category=Bag"> 
+                <h2 className="text-2xl font-semibold mb-2 cursor-pointer">
+                 Handbags
+                </h2>
+              </Link>
             </div>
           </div>
         </div>

@@ -3,70 +3,107 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartShopping,
+  faSearch,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const { user, isAuthenticated, logout } = useAuth();
   const router = useRouter();
   const [search, setSearch] = useState("");
 
+  const pathname = usePathname();
+  const isActive = (path) => pathname === path;
+
   const handleSearch = () => {
     const value = search.trim().toLowerCase();
     if (!value) return;
 
-    if (value.includes("saree")) router.push("/products/sarees");
-    else if (value.includes("sarongs")) router.push("/products/sarongs");
-    else if (value.includes("lungis")) router.push("/products/lungis");
-    else if (value.includes("tops")) router.push("/products/tops");
-    else if (value.includes("materials")) router.push("/products/materials");
-    else if (value.includes("shirts")) router.push("/products/shirts");
+    if (value.includes("saree")) router.push("/products?category=Saree");
+    else if (value.includes("sarong")) router.push("/products?category=Sarong");
+    else if (value.includes("lungi")) router.push("/products?category=Lungis");
+    else if (value.includes("top")) router.push("/products?category=Top");
+    else if (value.includes("material"))
+      router.push("/products?category=Material");
+    else if (value.includes("shirt")) router.push("/products?category=Shirt");
     else router.push(`/products?search=${value}`);
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow">
+    <header className="sticky top-0 z-50 bg-white shadow ">
       <div className="flex items-center justify-between px-20 py-1">
-
         {/* Logo */}
         <img src="/Sri_Hanloom.png" alt="Logo" className="w-40" />
 
-      {/* Navigation */}
-      <nav className="flex justify-center gap-10 py-3 text-black text-xl font-bold">
-        {!isAuthenticated ? (
-          <>
-            <Link href="/" className="hover:text-orange-500 pt-3">Home</Link>
-            <Link href="/Products" className="hover:text-orange-500 pt-3">Shop</Link>
+        {/* Navigation */}
+        <nav className="flex justify-center gap-10 py-3 text-black text-xl font-bold">
+          {!isAuthenticated ? (
+            <>
+              <Link
+                href="/"
+                className={`pt-3 cursor-pointer transition ${
+                  isActive("/")
+                    ? "text-orange-500 font-bold border-b-2 border-orange-500"
+                    : "hover:text-orange-500"
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                href="/products"
+                className={`pt-3 cursor-pointer transition ${
+                  isActive("/products")
+                    ? "text-orange-500 font-bold border-b-2 border-orange-500"
+                    : "hover:text-orange-500"
+                }`}
+              >
+                Shop
+              </Link>
 
-            {/* 🔍 Search */}
-        <   div className="flex items-center border border-gray-200 bg-white rounded-md px-3 gap-2">
-              <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="outline-none px-4 py-2 w-60"
-              />
-            </div>
-          </>
-        ) : (
-          <>
-            <Link href="/dashboard" className="hover:text-orange-500">Dashboard</Link>
-            <Link href="/dashboard/products" className="hover:text-orange-500">All Products</Link>
-          </>
-        )}
-      </nav>
+              {/* 🔍 Search */}
+              <div className="flex items-center border border-gray-200 bg-white rounded-md px-3 gap-2">
+                <FontAwesomeIcon icon={faSearch} className="text-gray-500" />
+                <input
+                  type="text"
+                  placeholder="Search products..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="outline-none px-4 py-2 w-60"
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/dashboard"
+                className="hover:text-orange-500 cursor-pointer"
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/dashboard/products"
+                className="hover:text-orange-500 cursor-pointer"
+              >
+                All Products
+              </Link>
+            </>
+          )}
+        </nav>
 
-       {/* Right Section */}
-        <div className="flex items-center gap-5">
-
+        {/* Right Section */}
+        <div className="flex items-center gap-10">
           {/* Auth Section */}
           {!isAuthenticated ? (
             <Link href="/login">
-              <FontAwesomeIcon icon={faUser} className="text-2xl cursor-pointer" />
+              <FontAwesomeIcon
+                icon={faUser}
+                className="text-2xl cursor-pointer"
+              />
             </Link>
           ) : (
             <div className="flex items-center gap-3 text-orange-500 font-semibold">
@@ -75,14 +112,15 @@ export default function Header() {
               <img
                 className="w-9 h-9 rounded-full"
                 src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
-                  user?.name || "User"
+                  user?.name || "User",
                 )}`}
                 alt="avatar"
               />
 
-              <button onClick={logout} 
-              title="Logout" 
-              className="px-2 py-1 rounded"
+              <button
+                onClick={logout}
+                title="Logout"
+                className="px-2 py-1 rounded"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +137,7 @@ export default function Header() {
           <button
             data-collapse-toggle="navbar-sticky"
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary cursor-pointer"
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
@@ -124,12 +162,13 @@ export default function Header() {
 
           {/* Cart */}
           <Link href="/cart">
-            <FontAwesomeIcon icon={faCartShopping} className="text-2xl cursor-pointer" />
+            <FontAwesomeIcon
+              icon={faCartShopping}
+              className="text-2xl cursor-pointer"
+            />
           </Link>
         </div>
       </div>
     </header>
   );
 }
-
- 

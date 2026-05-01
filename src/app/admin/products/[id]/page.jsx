@@ -1,6 +1,8 @@
 import Link from "next/link";
 import UpdateProductForm from "./UpdateProductForm";
-import GoBackIcon from "@/components/ui/GoBackIcon";
+import GoBackIcon from "../../../../components/ui/GoBackIcon";
+
+
 
 export default async function UpdateProductPage({ params }) {
   const { id } = await params;

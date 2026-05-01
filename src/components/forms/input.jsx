@@ -6,7 +6,7 @@ const Input = forwardRef(function Input(
   ref,
 ) {
     return (
-    <input ref={ref}
+    <Input ref={ref}
       id={id}
        type={type}
       placeholder={placeholder}
