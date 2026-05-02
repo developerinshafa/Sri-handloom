@@ -13,6 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const router = useRouter();
   const [search, setSearch] = useState("");
@@ -36,12 +37,12 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow ">
-      <div className="flex items-center justify-between px-20 py-1">
+      <div className="flex items-center justify-between px-20 md:px-10 lg:px-20 py-1">
         {/* Logo */}
-        <img src="/Sri_Hanloom.png" alt="Logo" className="w-40" />
+        <img src="/Sri_Hanloom.png" alt="Logo" className=" w-28 md:w-40" />
 
         {/* Navigation */}
-        <nav className="flex justify-center gap-10 py-3 text-black text-xl font-bold">
+        <nav className="hidden md:flex justify-center gap-10 py-3 text-black text-xl font-bold">
           {!isAuthenticated ? (
             <>
               <Link
@@ -102,11 +103,11 @@ export default function Header() {
             <Link href="/login">
               <FontAwesomeIcon
                 icon={faUser}
-                className="text-2xl cursor-pointer"
+                className="text-2xl md:text-2xl cursor-pointer"
               />
             </Link>
           ) : (
-            <div className="flex items-center gap-3 text-orange-500 font-semibold">
+            <div className="hidden md:flex items-center gap-3 text-orange-500 font-semibold">
               <span>Hi, {user?.name}</span>
 
               <img
@@ -164,11 +165,20 @@ export default function Header() {
           <Link href="/cart">
             <FontAwesomeIcon
               icon={faCartShopping}
-              className="text-2xl cursor-pointer"
+              className="text-2xl md:text-2xl cursor-pointer"
             />
           </Link>
         </div>
       </div>
+
+       {menuOpen && (
+        <div className="md:hidden flex flex-col gap-3 px-4 pb-4 bg-white shadow">
+          <Link href="/">Home</Link>
+          <Link href="/products">Shop</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/cart">Cart</Link>
+        </div>
+      )}
     </header>
   );
 }

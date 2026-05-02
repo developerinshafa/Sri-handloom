@@ -47,7 +47,7 @@ function AuthProvider({ children }) {
       if (me.role === "admin") {
         router.push("/admin");
       } else {
-        router.push("/admin/dashboard");
+        router.push("/dashboard");
       }
     }
   };

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useAuth } from "../../context/AuthContext";
 import Label from "../../components/ui/forms/Label";
-import FormError from "../../components/forms/FormError";
+import FormError from "../../components/ui/forms/FormError";
 import Input from "../../components/ui/forms/Input";
 
 

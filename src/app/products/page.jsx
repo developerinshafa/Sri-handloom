@@ -45,7 +45,7 @@ export default function ProductsPage() {
       price: 2500,
       category: "Sarong",
       image:
-        "https://www.ownacraft.com/wp-content/uploads/2024/05/Untitled-40.webp",
+        "https://barefootceylon.com/cdn/shop/files/Barefoot_Designer_sarong_Diya_Nilla-D_43_1.jpg?v=1776678228&width=533",
     },
     {
       name: "Handloom Pink Material",

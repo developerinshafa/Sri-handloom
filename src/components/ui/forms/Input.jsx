@@ -1,11 +1,5 @@
 export default function Input({
-  id,
-  type = "text",
-  placeholder,
-  value,
-  onChange,
-  required = false,
-  className = "",
+  id, type = "text", placeholder, value, onChange, required = false, className = "",
   ...rest
 }) {
   return (

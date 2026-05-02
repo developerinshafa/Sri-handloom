@@ -5,7 +5,8 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Label from "../../components/ui/forms/Label";
 import Input from "../../components/ui/forms/Input";
-import FormError from "../../components/forms/FormError";
+import FormError from "../../components/ui/forms/FormError";
+
 
 
 const schema = z.object({
