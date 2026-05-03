@@ -8,7 +8,6 @@ import Label from "../../components/ui/forms/Label";
 import FormError from "../../components/ui/forms/FormError";
 import Input from "../../components/ui/forms/Input";
 
-
 const schema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(4, "Password must be at least 4 characters"),
@@ -26,34 +25,11 @@ export default function LoginForm() {
     mode: "onChange",
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(data),
-      });
-
-      let loginData;
-
-      try {
-        loginData = await response.json();
-      } catch {
-        alert("Server error");
-        return;
-      }
-
-      if (response.ok) {
-        await login();
-        alert("Logged in successfully");
-      } else {
-        alert(loginData?.error || "Login failed");
-      }
-    } catch {
-      alert("Failed to login");
-    }
+  const onSubmit = (data) =>{
+    console.log("Form Data:", data);
+    login(data);
   };
+  
   return (
     <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
       <div>

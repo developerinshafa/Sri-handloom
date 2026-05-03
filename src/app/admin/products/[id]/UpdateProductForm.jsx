@@ -12,7 +12,8 @@ import Input from "../../../../components/ui/forms/Input";
 import Label from "../../../../components/ui/forms/Label";
 import Textarea from "../../../../components/ui/forms/Textarea";
 import Select from "../../../../components/ui/forms/Select";
-import FileInput from "../../../../components/ui/forms/FileInput";
+// import FileInput from "../../../../components/ui/forms/FileInput";
+import FileInput from "../../../../components/forms/FileInput"
 
 const productSchema = z.object({
   productName: z.string().min(2, "Product name is required"),

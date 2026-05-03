@@ -1,10 +1,10 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "../components/header/Header";
-import Footer from "./Footer";
 import { AuthProvider } from "../context/AuthProvider";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import Footer from "../components/footer/Footer";
 
 config.autoAddCss = false;
 

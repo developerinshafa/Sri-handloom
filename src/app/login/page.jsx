@@ -1,6 +1,5 @@
 import LoginForm from "./LoginForm";
 
-
 export default function LoginPage() {
   return (
     <div className=" flex items-center justify-center bg-gray-200 p-5">
