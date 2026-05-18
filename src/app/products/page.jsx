@@ -13,6 +13,7 @@ export default function ProductsPage() {
   // Products with category added
   const products = [
     {
+      id: 1,
       name: "Handloom Blue Saree",
       price: 9500,
       category: "Saree",
@@ -20,6 +21,7 @@ export default function ProductsPage() {
         "https://adiakshoy.com/cdn/shop/files/Model_4_1copy_1024x1024.webp?v=1751950934",
     },
     {
+      id: 2,
       name: "Handloom Red Saree",
       price: 9500,
       category: "Saree",
@@ -27,6 +29,7 @@ export default function ProductsPage() {
         "https://i.pinimg.com/736x/b1/25/1d/b1251d7c5f5d23a5b322873d0ab02f8a.jpg",
     },
     {
+      id: 3,
       name: "Handloom Shirt",
       price: 4000,
       category: "Shirt",
@@ -34,6 +37,7 @@ export default function ProductsPage() {
         "https://objectstorage.ap-mumbai-1.oraclecloud.com/n/softlogicbicloud/b/cdn/o/products/1700775501001--2--1627449108.jpeg",
     },
     {
+       id: 4,
       name: "Handloom Top",
       price: 2500,
       category: "Top",
@@ -41,6 +45,7 @@ export default function ProductsPage() {
         "https://quaclo.com/cdn/shop/products/QUA-BROWN-HANDLOOM-SHORT-KURTI_1d5d806b-feff-4eb4-b013-7e053711d9a4.jpg?v=1701496545&width=1100",
     },
     {
+       id: 5,
       name: "Handloom Sarongs",
       price: 2500,
       category: "Sarong",
@@ -48,6 +53,7 @@ export default function ProductsPage() {
         "https://barefootceylon.com/cdn/shop/files/Barefoot_Designer_sarong_Diya_Nilla-D_43_1.jpg?v=1776678228&width=533",
     },
     {
+       id: 6,
       name: "Handloom Pink Material",
       price: 600,
       category: "Material",
@@ -55,6 +61,7 @@ export default function ProductsPage() {
         "https://d29lkp7s2wd4pq.cloudfront.net/full/Light-Pink-Pink-Stripe-Handloom-Cotton-Fabric-40901.jpg",
     },
     {
+       id: 7,
       name: "Handloom Handbags",
       price: 1200,
       category: "Bag",
@@ -62,6 +69,7 @@ export default function ProductsPage() {
         "https://www.cord360.com/Data/Images/100/ProductImage/Handloom%20Bags.jpg",
     },
     {
+       id: 8,
       name: "Handloom Bedsheets",
       price: 2000,
       category: "Bedsheet",
@@ -148,12 +156,12 @@ export default function ProductsPage() {
                     View
                   </button>
 
-                  <button
+                  {/* <button
                     onClick={() => addToCart(product)}
                     className="bg-orange-500 text-white px-3 py-1 rounded-md text-sm hover:bg-orange-600 cursor-pointer"
                   >
                     Add Cart
-                  </button>
+                  </button> */}
                 </div>
               </div>
 

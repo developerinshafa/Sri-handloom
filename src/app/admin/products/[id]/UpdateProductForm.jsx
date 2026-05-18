@@ -13,13 +13,13 @@ import Label from "../../../../components/ui/forms/Label";
 import Textarea from "../../../../components/ui/forms/Textarea";
 import Select from "../../../../components/ui/forms/Select";
 // import FileInput from "../../../../components/ui/forms/FileInput";
-import FileInput from "../../../../components/forms/FileInput"
+import FileInput from "@/components/ui/forms/FileInput";
 
 const productSchema = z.object({
   productName: z.string().min(2, "Product name is required"),
   price: z.coerce.number().positive("Price must be greater than 0"),
   description: z.string().min(10, "Description must be at least 10 characters"),
-  category: z.enum(["electronics", "clothing", "home"]),
+  category: z.enum(["sarees", "shirts", "sarongs", "tops", "materials"]),
   productImage: z.any().optional(),
 });
 
@@ -38,7 +38,7 @@ export default function UpdateProductForm({ productId }) {
       productName: "",
       price: "",
       description: "",
-      category: "electronics",
+      category: "sarees",
       productImage: null,
     },
   });
@@ -70,7 +70,7 @@ export default function UpdateProductForm({ productId }) {
           productName: product.productName || "",
           price: product.price ?? "",
           description: product.description || "",
-          category: product.category || "electronics",
+          category: product.category || "sarees",
           productImage: null,
         });
       } catch {
@@ -145,9 +145,11 @@ export default function UpdateProductForm({ productId }) {
             <div>
               <Label htmlFor="category">Category</Label>
               <Select {...register("category")}>
-                <option value="electronics">Electronics</option>
-                <option value="clothing">Clothing</option>
-                <option value="home">Home & Garden</option>
+                <option value="sarees">Sarees</option>
+                <option value="shirts">Shirts</option>
+                <option value="sarongs">Sarongs</option>
+                <option value="tops">Tops</option>
+                <option value="materials">Materials</option>
               </Select>
               <FormError message={errors.category?.message} />
             </div>

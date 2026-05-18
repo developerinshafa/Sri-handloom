@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import FileInput from "@/components/ui/forms/Fileinput";
+import FileInput from "@/components/ui/forms/FileInput";
 import Input from "@/components/ui/forms/Input";
 import Label from "@/components/ui/forms/Label";
 import Select from "@/components/ui/forms/Select";
@@ -15,7 +15,7 @@ const productSchema = z.object({
   productName: z.string().min(2, "Product name is required"),
   price: z.coerce.number().positive("Price must be greater than 0"),
   description: z.string().min(10, "Description must be at least 10 characters"),
-  category: z.enum(["electronics", "clothing", "home"]),
+  category: z.enum(["sarees", "shirts", "sarongs", "tops", "materials"]),
   productImage: z
     .any()
     .refine((files) => files?.length > 0, "Product image is required"),
@@ -48,11 +48,14 @@ export default function NewProductForm() {
       category: values.category,
       productImage: values.productImage[0],
     });
+
     const response = await fetch("/api/admin/products", {
       method: "POST",
       body: formData,
       credentials: "include",
     });
+
+    console.log("response:", response);
 
     // if created, reset form and show success message and redirect to products list
     if (response.ok) {
@@ -108,9 +111,11 @@ export default function NewProductForm() {
             <div>
               <Label htmlFor="category">Category</Label>
               <Select id="category" name="category" {...register("category")}>
-                <option value="electronics">Electronics</option>
-                <option value="clothing">Clothing</option>
-                <option value="home">Home & Garden</option>
+                <option value="sarees">Sarees</option>
+                <option value="shirts">Shirts</option>
+                <option value="sarongs">Sarongs</option>
+                <option value="tops">Tops</option>
+                <option value="materials">Materials</option>
               </Select>
               <FormError message={errors.category?.message} />
             </div>

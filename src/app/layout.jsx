@@ -5,6 +5,8 @@ import { AuthProvider } from "../context/AuthProvider";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Footer from "../components/footer/Footer";
+import ConditionalHeader from "../components/ConditionalHeader";
+import { CartProvider } from "../context/CartContext";
 
 config.autoAddCss = false;
 
@@ -21,32 +23,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} h-full antialiased`}
+    >
       <body
         className="min-h-full flex flex-col"
         suppressHydrationWarning={true}
       >
         <AuthProvider>
-          <Header />
+          <ConditionalHeader />
 
-          <main className="flex-1">{children}</main>
-
+          <CartProvider>
+            <main className="flex-1">{children}</main>
+          </CartProvider>
           <Footer />
         </AuthProvider>
       </body>
     </html>
   );
 }
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en" className={`${inter.variable} h-full antialiased`}>
-//       <body className="min-h-full flex flex-col" suppressHydrationWarning={true}>
-//         <AuthProvider>
-//           <Header />
-//           {children}
-//         </AuthProvider>
-//       </body>
-//     </html>
-//   );
-// }

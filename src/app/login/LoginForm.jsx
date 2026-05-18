@@ -7,6 +7,9 @@ import { useAuth } from "../../context/AuthContext";
 import Label from "../../components/ui/forms/Label";
 import FormError from "../../components/ui/forms/FormError";
 import Input from "../../components/ui/forms/Input";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
 
 const schema = z.object({
   email: z.string().email("Invalid email address"),
@@ -14,22 +17,61 @@ const schema = z.object({
 });
 
 export default function LoginForm() {
-  const { login } = useAuth();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm({
-    resolver: zodResolver(schema),
-    mode: "onChange",
-  });
+const { login } = useAuth();
+const router = useRouter();
 
-  const onSubmit = (data) =>{
-    console.log("Form Data:", data);
-    login(data);
-  };
-  
+ const {
+  register,
+  handleSubmit,
+  reset,
+  formState: { errors, isValid },
+} = useForm({
+  resolver: zodResolver(schema),
+  mode: "onChange",
+});
+
+  const onSubmit = async (data) => {
+  try {
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(data),
+    });
+
+    const text = await response.text();
+    let loginData;
+    try {
+      loginData = JSON.parse(text);
+    } catch {
+      loginData = { error: text };
+    }
+
+    if (!response.ok) {
+      alert(loginData?.error || "Login failed");
+      return;
+    }
+
+    console.log("ROLE:", loginData.role);
+
+    login(loginData);
+
+     reset(); 
+
+    // // navigation
+    if (loginData.role === "admin") {
+      router.push("/admin/dashboard");
+      
+    } else {
+      router.push("/user/dashboard");
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
   return (
     <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -55,9 +97,9 @@ export default function LoginForm() {
       </div>
 
       <div className="text-right">
-        <a href="#" className="text-red-400 hover:text-red-600 text-sm">
+        <Link href="#" className="text-red-400 hover:text-red-600 text-sm">
           Forgot Password?
-        </a>
+        </Link>
       </div>
 
       <button
@@ -74,9 +116,9 @@ export default function LoginForm() {
       </button>
 
       <div className="p-1 text-center text-sm">
-        <a href="/register" className="text-indigo-500 hover:text-indigo-700">
+        <Link href="/register" className="text-indigo-500 hover:text-indigo-700">
           Don&apos;t have an account? Register here
-        </a>
+        </Link>
       </div>
     </form>
   );

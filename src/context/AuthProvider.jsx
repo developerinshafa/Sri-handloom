@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 function AuthProvider({ children }) {
   const router = useRouter();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const isAuthenticated = !!user;
 
-    const refreshSession = useCallback(async () => {
+  const refreshSession = useCallback(async () => {
     try {
       const response = await fetch(`/api/me`, {
         method: "GET",
@@ -24,7 +24,13 @@ function AuthProvider({ children }) {
         return null;
       }
 
-      const data = await response.json();
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = { user: null, __raw: text };
+      }
       setUser(data.user);
       return data.user;
     } catch {
@@ -34,22 +40,24 @@ function AuthProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
+
     (async () => {
-      await refreshSession();
-      setLoading(false);
+      try {
+        await refreshSession();
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
     })();
+
+    return () => {
+      cancelled = true;
+    };
   }, [refreshSession]);
 
-  //login function to set user data and redirect to dashboard
+  // login should only update auth state; navigation should be handled by pages/forms
   const login = async () => {
-    const me = await refreshSession();
-      if (me) {
-      if (me.role === "admin") {
-        router.push("/admin");
-      } else {
-        router.push("/");
-      }
-    }
+    await refreshSession();
   };
 
   //logout function to clear user data and redirect to login page

@@ -6,18 +6,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Label from "../../components/ui/forms/Label";
 import Input from "../../components/ui/forms/Input";
 import FormError from "../../components/ui/forms/FormError";
+import Link from "next/link";
 
-
-
-const schema = z.object({
-  name: z.string().min(3, "Name must be at least 3 characters"),
-  email: z.email("Invalid email address"),
-  password: z.string().min(5, "Password must be at least 5 characters"),
-  confirmPassword: z.string().min(5, "Please confirm your password"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-});
+const schema = z
+  .object({
+    name: z.string().min(3, "Name must be at least 3 characters"),
+    email: z.email("Invalid email address"),
+    password: z.string().min(5, "Password must be at least 5 characters"),
+    confirmPassword: z.string().min(5, "Please confirm your password"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 export default function RegisterForm() {
   const {
@@ -47,7 +48,13 @@ export default function RegisterForm() {
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = { error: text };
+      }
       alert(data.message || data.error);
 
       if (response.ok) {
@@ -67,19 +74,25 @@ export default function RegisterForm() {
 
         <form onSubmit={handleSubmit(submitRegister)}>
           <div>
-            <Label htmlFor="name" required>Name</Label>
+            <Label htmlFor="name" required>
+              Name
+            </Label>
             <Input id="name" {...register("name")} />
             <FormError message={errors.name?.message} />
           </div>
 
           <div>
-            <Label htmlFor="email" required>Email</Label>
+            <Label htmlFor="email" required>
+              Email
+            </Label>
             <Input id="email" type="email" {...register("email")} />
             <FormError message={errors.email?.message} />
           </div>
 
           <div>
-            <Label htmlFor="password" required>Password</Label>
+            <Label htmlFor="password" required>
+              Password
+            </Label>
             <Input id="password" type="password" {...register("password")} />
             <FormError message={errors.password?.message} />
           </div>
@@ -117,9 +130,12 @@ export default function RegisterForm() {
             </button>
           </div>
           <div className="p-1 text-center text-sm">
-            <a href="/login" className="text-indigo-500 hover:text-indigo-700">
+            <Link
+              href="/login"
+              className="text-indigo-500 hover:text-indigo-700"
+            >
               Don&apos;t have an account? Login here
-            </a>
+            </Link>
           </div>
         </form>
       </div>

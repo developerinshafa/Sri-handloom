@@ -15,7 +15,13 @@ export default function ProductsList() {
           credentials: "include",
         });
 
-        const data = await response.json();
+        const text = await response.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          data = {};
+        }
 
         if (response.ok) {
           setProducts(data.products);

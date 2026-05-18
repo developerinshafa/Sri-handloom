@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function CustomerReviewSection() {
   const [reviews] = useState([
     {
-      name: "Kavindu Perera",
+      name: "Fathima Inshafa",
       rating: 5,
       comment: "Very good product quality and fast delivery. Highly recommended!",
     },

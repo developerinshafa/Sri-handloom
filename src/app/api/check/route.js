@@ -1,3 +1,5 @@
-export function GET() {
-  return Response.json({ message: "Hello world from Nextjs" });
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  return NextResponse.json({ message: "Hello from Next.js API" }, { status: 200 });
 }

@@ -1,4 +1,4 @@
-export default function dashboard() {
+export default function admindashboard() {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}

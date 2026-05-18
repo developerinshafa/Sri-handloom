@@ -1,17 +1,34 @@
 import { NextResponse } from "next/server";
+import { jwtVerify } from "jose";
 
-export function proxy(request) {
+async function getPayload(request) {
   const token = request.cookies.get("token")?.value;
-  console.log("Proxy checking token:", token);
+  if (!token) return null;
 
-  if (!token) {
-    const loginUrl = new URL("/login", request.url);
-    return NextResponse.redirect(loginUrl);
+  try {
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const { payload } = await jwtVerify(token, secret);
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
+export async function proxy(request) {
+  const pathname = request.nextUrl.pathname;
+  const loginUrl = new URL("/login", request.url);
+  const forbiddenUrl = new URL("/not-authorized", request.url);
+
+  const payload = await getPayload(request);
+  if (!payload) return NextResponse.redirect(loginUrl);
+
+  if (pathname.startsWith("/admin") && payload.role !== "admin") {
+    return NextResponse.redirect(forbiddenUrl);
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/services/:path*"],
+  matcher: ["/admin/:path*", "/user/:path*"],
 };

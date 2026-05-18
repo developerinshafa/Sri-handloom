@@ -3,11 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCartShopping,
-  faSearch,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faSearch, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -117,7 +113,6 @@ export default function Header() {
                 )}`}
                 alt="avatar"
               />
-
               <button
                 onClick={logout}
                 title="Logout"
@@ -136,6 +131,7 @@ export default function Header() {
           )}
 
           <button
+          onClick={() => setMenuOpen(!menuOpen)}
             data-collapse-toggle="navbar-sticky"
             type="button"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary cursor-pointer"

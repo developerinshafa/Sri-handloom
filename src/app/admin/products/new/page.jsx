@@ -1,8 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import NewProductForm from "./NewProductForm";
 import GoBackIcon from "@/components/ui/GoBackIcon";
 
-export default function ManageProductsPage() {
+export default function AddProductPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
