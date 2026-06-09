@@ -24,6 +24,62 @@ export default function ProductDetailsPage() {
         "https://i.pinimg.com/736x/b1/25/1d/b1251d7c5f5d23a5b322873d0ab02f8a.jpg",
       description: "Elegant red saree crafted by artisans",
     },
+     {
+      id: 3,
+      name: "Rayon Blue Shirt",
+      price: 4500,
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvZ3_1xWEZE488fCjS3Um1Esk25cvdBcO3vg&s",
+      description: "Elegant Rayon Blue Shirt",
+    },
+     {
+      id: 4,
+      name: "Rayon Sarongs",
+      price: 4500,
+      image:
+        "https://www.kandygshandlooms.com/cdn/shop/files/8_11.png?v=1717430182&width=1445",
+      description: "Handcrafted premium handloom Rayon Sarongs",
+    },
+     {
+      id: 5,
+      name: "Handloom Red Saree",
+      price: 9500,
+      image:
+        "https://i.pinimg.com/736x/b1/25/1d/b1251d7c5f5d23a5b322873d0ab02f8a.jpg",
+      description: "Elegant red saree crafted by artisans",
+    },
+     {
+      id: 2,
+      name: "Handloom Red Saree",
+      price: 9500,
+      image:
+        "https://i.pinimg.com/736x/b1/25/1d/b1251d7c5f5d23a5b322873d0ab02f8a.jpg",
+      description: "Elegant red saree crafted by artisans",
+    },
+     {
+      id: 2,
+      name: "Handloom Red Saree",
+      price: 9500,
+      image:
+        "https://i.pinimg.com/736x/b1/25/1d/b1251d7c5f5d23a5b322873d0ab02f8a.jpg",
+      description: "Elegant red saree crafted by artisans",
+    },
+     {
+      id: 2,
+      name: "Handloom Red Saree",
+      price: 9500,
+      image:
+        "https://i.pinimg.com/736x/b1/25/1d/b1251d7c5f5d23a5b322873d0ab02f8a.jpg",
+      description: "Elegant red saree crafted by artisans",
+    },
+     {
+      id: 2,
+      name: "Handloom Red Saree",
+      price: 9500,
+      image:
+        "https://i.pinimg.com/736x/b1/25/1d/b1251d7c5f5d23a5b322873d0ab02f8a.jpg",
+      description: "Elegant red saree crafted by artisans",
+    },
   ];
 
   const product = products.find(
