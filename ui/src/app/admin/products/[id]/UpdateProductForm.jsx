@@ -1,0 +1,174 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+// UI components
+import FormError from "../../../../components/ui/forms/FormError";
+import Input from "../../../../components/ui/forms/Input";
+import Label from "../../../../components/ui/forms/Label";
+import Textarea from "../../../../components/ui/forms/Textarea";
+import Select from "../../../../components/ui/forms/Select";
+// import FileInput from "../../../../components/ui/forms/FileInput";
+import FileInput from "@/components/ui/forms/FileInput";
+
+const productSchema = z.object({
+  productName: z.string().min(2, "Product name is required"),
+  price: z.coerce.number().positive("Price must be greater than 0"),
+  description: z.string().min(10, "Description must be at least 10 characters"),
+  category: z.enum(["sarees", "shirts", "sarongs", "tops", "materials"]),
+  productImage: z.any().optional(),
+});
+
+export default function UpdateProductForm({ productId }) {
+  const router = useRouter();
+  const [loadError, setLoadError] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: zodResolver(productSchema),
+    defaultValues: {
+      productName: "",
+      price: "",
+      description: "",
+      category: "sarees",
+      productImage: null,
+    },
+  });
+
+  useEffect(() => {
+    if (!productId) return;
+
+    let cancelled = false;
+
+    async function getInitialData() {
+      try {
+        setLoadError("");
+
+        const response = await fetch("/api/admin/products/" + productId, {
+          method: "GET",
+          credentials: "include",
+        });
+
+        if (!response.ok) {
+          if (!cancelled) setLoadError("Failed to load product for editing");
+          return;
+        }
+
+        const product = await response.json();
+
+        if (cancelled) return;
+
+        reset({
+          productName: product.productName || "",
+          price: product.price ?? "",
+          description: product.description || "",
+          category: product.category || "sarees",
+          productImage: null,
+        });
+      } catch {
+        if (!cancelled)
+          setLoadError("Something went wrong while loading product");
+      }
+    }
+
+    getInitialData();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [productId, reset]);
+
+  const onSubmit = async (values) => {
+    try {
+      const formData = new FormData();
+      formData.append("productName", values.productName);
+      formData.append("price", String(values.price));
+      formData.append("description", values.description);
+      formData.append("category", values.category);
+
+      if (values.productImage?.[0]) {
+        formData.append("productImage", values.productImage[0]);
+      }
+
+      const response = await fetch("/api/admin/products/" + productId, {
+        method: "PUT",
+        body: formData,
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload?.error || "Failed to update product");
+      }
+
+      alert("Product updated successfully!");
+      router.push("/admin/products");
+      router.refresh();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="p-6 space-y-6">
+        {loadError && <FormError message={loadError} />}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <Label htmlFor="productName">Product Name</Label>
+            <Input {...register("productName")} />
+            <FormError message={errors.productName?.message} />
+          </div>
+
+          <div>
+            <Label htmlFor="price">Price</Label>
+            <Input type="number" {...register("price")} />
+            <FormError message={errors.price?.message} />
+          </div>
+
+          <div>
+            <Label htmlFor="description">Description</Label>
+            <Textarea rows={6} {...register("description")} />
+            <FormError message={errors.description?.message} />
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="category">Category</Label>
+              <Select {...register("category")}>
+                <option value="sarees">Sarees</option>
+                <option value="shirts">Shirts</option>
+                <option value="sarongs">Sarongs</option>
+                <option value="tops">Tops</option>
+                <option value="materials">Materials</option>
+              </Select>
+              <FormError message={errors.category?.message} />
+            </div>
+
+            <div>
+              <Label htmlFor="productImage">Product Image</Label>
+              <FileInput {...register("productImage")} />
+              <FormError message={errors.productImage?.message} />
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg"
+        >
+          Update Product
+        </button>
+      </div>
+    </form>
+  );
+}
